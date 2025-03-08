@@ -11,6 +11,8 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
+        "custom-gradient":
+          "linear-gradient(to bottom, rgba(51, 51, 51, 0.3) 0%, rgba(51, 51, 51, 0) 100%)",
         "border-image-source":
           "linear-gradient(92.08deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 49.5%, rgba(255, 255, 255, 0) 100%)",
         "enquire-gradient":
@@ -72,6 +74,7 @@ const config: Config = {
       },
       boxShadow: {
         button: "50px solid #FFFFFF1A",
+        "custom-bottom-shadow": "0 10px 15px rgba(211, 211, 211, 0.5)",
       },
     },
   },

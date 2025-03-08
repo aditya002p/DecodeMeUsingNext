@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import Image from "next/image";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Button from "./Button";
@@ -58,7 +58,7 @@ export default function Hero() {
   }, []);
 
   // Manual navigation
-  const goToSlide = (index) => {
+  const goToSlide = (index: SetStateAction<number>) => {
     setCurrentSlide(index);
   };
 
