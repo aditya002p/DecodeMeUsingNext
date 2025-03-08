@@ -9,6 +9,7 @@ import Hero1 from "../../../public/Hero1.svg";
 import Hero2 from "../../../public/Hero2.svg";
 import Hero3 from "../../../public/Hero3.svg";
 import Avatar1 from "../../../public/avatar.svg";
+
 // Carousel data structure
 const carouselData = [
   {
@@ -64,12 +65,12 @@ export default function Hero() {
   const currentItem = carouselData[currentSlide];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 relative pt-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 relative pt-12">
       <div className="flex flex-col md:flex-row items-center gap-8 bg-border-image-source shadow-lg shadow-border rounded-2xl overflow-hidden">
-        {/* Ribbon */}
-        <div className="absolute top-16 w-80 h-11 md">
+        {/* Ribbon - Responsive positioning */}
+        <div className="absolute top-8 sm:top-12 md:top-16 left-4 sm:left-6 md:left-6 z-10 md:w-80 w-auto">
           <div
-            className="bg-ribbon text-white text-xs md:text-sm py-2 px-4 font-medium leading-6"
+            className="bg-ribbon text-white text-xs sm:text-sm py-2 px-4 font-medium leading-6"
             style={{
               clipPath: "polygon(0% 0%, 100% 0%, 93% 50%, 100% 100%, 0% 100%)",
               fontFamily: "Poppins, sans-serif",
@@ -80,65 +81,68 @@ export default function Hero() {
         </div>
 
         {/* Left Content */}
-        <div className="w-full md:w-1/2 px-8 md:px-12 md:mt-[-100px]">
+        <div className="w-full md:w-1/2 px-6 sm:px-8 md:px-12 pt-16 sm:pt-20 md:pt-0 md:mt-0 pb-8 order-2 md:order-1">
           {/* Rating and stats */}
-          <div className="">
-            <div className="flex items-center gap-4 mb-2">
-              <div>
-                <div className="">
-                  <Image
-                    src={Avatar1}
-                    alt="User avatar"
-                    width={100}
-                    height={100}
-                    className=""
-                  />
-                </div>
+          <div className="mb-6">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="flex-shrink-0 w-14 sm:w-16 md:w-auto">
+                <Image
+                  src={Avatar1}
+                  alt="User avatar"
+                  width={150}
+                  height={150}
+                  className="w-full h-auto"
+                />
               </div>
               <div>
-                <div className="flex text-yellow-400 text-sm">{"★★★★★"}</div>
-                <p className="text-xs text-gray-600">
+                <div className="flex text-yellow-400 text-sm sm:text-base">
+                  {"★★★★★"}
+                </div>
+                <p className="text-xs sm:text-sm text-gray-600">
                   300+ Students Counseled | 100+ Industry Experts Onboarded
                 </p>
               </div>
             </div>
           </div>
 
-          <h1 className="font-bold text-3xl md:text-4xl text-gray-800 mb-4 tracking-tight">
+          <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl text-gray-800 mb-4 tracking-tight">
             {currentItem.title}
           </h1>
 
-          <p className="text-gray-600 mb-8">{currentItem.description}</p>
+          <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
+            {currentItem.description}
+          </p>
 
           <Link href={currentItem.buttonLink}>
             <Button
-              variant="tertiary"
+              variant="fill"
               size="lg"
-              className="rounded-enquire shadow-button border-enquire bg-enquire-gradient text-black font-medium"
+              className="relative bg-enquire-gradient text-black font-medium rounded-full shadow-lg border border-[#FFFFFF1A] before:absolute before:inset-[-2px] before:rounded-full before:border before:border-[#FFFFFF33] before:-z-10 text-sm sm:text-base w-full sm:w-auto"
             >
               <span>{currentItem.buttonText}</span>
-              <div className="ml-2 bg-white rounded-lg w-5 h-4 px-[2px] py-[2px]">
-                <ArrowRightIcon className="" />
+              <div className="ml-2 bg-white rounded-lg w-5 h-4 px-[2px] py-[2px] flex items-center justify-center">
+                <ArrowRightIcon className="w-3 h-3" />
               </div>
             </Button>
           </Link>
         </div>
 
-        {/* Right Image */}
-        <div className="w-full md:w-1/2 h-full">
-          <div className="relative md:w-[533px] md:h-[724px] w-full">
+        {/* Right Image - Responsive sizing and ordering */}
+        <div className="w-full md:w-1/2 order-1 md:order-2">
+          <div className="relative w-full aspect-[4/3] sm:aspect-square- md:aspect-auto md:w-full md:h-[600px] lg:h-[724px]">
             <Image
               src={currentItem.imageSrc}
               alt="Hero image"
               fill
-              className=""
+              className="object-contain md:object-cover md:mt-0 mt-10"
+              priority
             />
           </div>
         </div>
       </div>
 
       {/* Carousel indicators */}
-      <div className="flex justify-center mt-6 gap-2">
+      <div className="flex justify-center mt-4 sm:mt-6 gap-2 pb-6">
         {carouselData.map((_, index) => (
           <button
             key={index}
@@ -150,8 +154,6 @@ export default function Hero() {
           />
         ))}
       </div>
-
-      {/* <FeaturedOn /> */}
     </div>
   );
 }

@@ -10,10 +10,10 @@ const sizeClasses = {
 };
 
 const variantClasses = {
-  fill: "text-black bg-white font-semibold",
+  fill: "text-black bg-white font-semibold ",
   default: "text-white bg-[#0C0E1E]",
   secondary: "text-[#0C0E1E] border-[#EAEAEA] border rounded-3xl ",
-  tertiary: "bg-[#3C50E0] text-white rounded-3xl border border-indigo-500 ",
+  tertiary: "bg-[#3C50E0] text-white rounded-3xl ",
 };
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

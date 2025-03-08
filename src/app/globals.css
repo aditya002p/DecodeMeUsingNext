@@ -7,9 +7,6 @@
     text-wrap: balance;
   }
 }
-
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -66,12 +63,12 @@
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border;
+    @apply border-shadow-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

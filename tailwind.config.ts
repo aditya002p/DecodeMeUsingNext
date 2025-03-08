@@ -17,11 +17,8 @@ const config: Config = {
           "radial-gradient(50% 50% at 50% 50%, #FFF4B3 0%, #FFE235 100%)",
         ribbon: "linear-gradient(90deg, #DA512B 0%, #A23214 50%, #DA512B 100%)",
       },
-      clipPath: {
-        "custom-cut": "polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%)",
-      },
-      borderWidth: {
-        enquire: "0.812245px",
+      dropShadow: {
+        shadow: "4px solid #D0B721",
       },
       colors: {
         "enquire-border": "rgba(255, 255, 255, 0.1)",

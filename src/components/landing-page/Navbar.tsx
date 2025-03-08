@@ -39,7 +39,7 @@ const EnquireButton = () => (
     <Button
       variant="fill"
       size="sm"
-      className="rounded-enquire shadow-button border-enquire bg-enquire-gradient text-black font-medium"
+      className="relative bg-enquire-gradient text-black font-medium rounded-full shadow-lg border border-[#FFFFFF1A] before:absolute before:inset-[-2px] before:rounded-full before:border before:border-[#FFFFFF33] before:-z-10"
     >
       Enquire Now
       <div className="ml-2 bg-white rounded-lg w-5 h-4 px-[2px] py-[2px]">
