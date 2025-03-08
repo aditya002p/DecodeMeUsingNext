@@ -11,6 +11,7 @@ import {
 import { HiBars3 } from "react-icons/hi2";
 import { cn } from "@/utils/utils";
 import logo from "../../../public/logo.svg";
+import Button from "./Button";
 const NavItems = [
   { label: "Why we exist?", url: "#why-we-exist" },
   { label: "Vision & Mission", url: "#vision-mission" },
@@ -34,17 +35,22 @@ const NavLink = ({ href, children, className }) => (
 );
 
 const EnquireButton = () => (
-  <Link
-    href="/enquire"
-    className="inline-flex items-center bg-yellow-300 text-black font-medium text-sm px-5 py-2.5 rounded-full hover:bg-yellow-400 transition-colors"
-  >
-    Enquire Now
-    <ArrowRightIcon className="ml-2" />
+  <Link href="/enquire">
+    <Button
+      variant="fill"
+      size="sm"
+      className="rounded-enquire shadow-button border-enquire bg-enquire-gradient text-black font-medium"
+    >
+      Enquire Now
+      <div className="ml-2 bg-white rounded-lg w-5 h-4 px-[2px] py-[2px]">
+        <ArrowRightIcon className="" />
+      </div>
+    </Button>
   </Link>
 );
 
 const DesktopNavigation = () => (
-  <div className="hidden lg:flex items-center space-x-8">
+  <div className="hidden lg:flex items-center space-x-8 text-sm font-[300px]">
     {NavItems.map((item) => (
       <NavLink key={item.label} href={item.url}>
         {item.label}
