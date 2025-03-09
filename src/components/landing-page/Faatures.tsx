@@ -1,17 +1,14 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Button from "./Button";
-
-// Sample images - replace with your actual paths
 import student from "../../../public/student.svg";
 import engineer from "../../../public/engineer.svg";
 import wrongCareer from "../../../public/wrong-career.svg";
 import jobVanish from "../../../public/job-vanish.svg";
 import commerceImg from "../../../public/commerce.svg";
-import Arrow1 from "../../../public/Arrow.png";
-// Define the interface for feature items
 interface FeatureItem {
   id: string;
   number: string;
@@ -25,7 +22,6 @@ interface FeatureItem {
   position: "left" | "right";
 }
 
-// Sample data for features
 const featureItems: FeatureItem[] = [
   {
     id: "feature-1",
@@ -109,9 +105,7 @@ const Features = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Only apply animations on medium screens and larger
       if (window.innerWidth < 768) {
-        // Set all features as active on mobile
         const allActive = featureItems.reduce((acc, feature) => {
           acc[feature.id] = true;
           return acc;
@@ -124,7 +118,6 @@ const Features = () => {
       const viewportHeight = window.innerHeight;
       const scrollPosition = window.scrollY;
 
-      // Check if we're in the features section
       if (sectionRef.current) {
         const sectionRect = sectionRef.current.getBoundingClientRect();
         const sectionTop = sectionRect.top + window.scrollY;
@@ -138,7 +131,6 @@ const Features = () => {
         if (!isSectionVisible) return;
       }
 
-      // Update timeline color animation
       if (timelineRef.current) {
         const timelineElement = timelineRef.current;
         const timelineRect = timelineElement.getBoundingClientRect();
@@ -146,7 +138,6 @@ const Features = () => {
         const timelineHeight = timelineRect.height;
         const timelineBottom = timelineTop + timelineHeight;
 
-        // Calculate the progress percentage along the timeline
         const visiblePercentage = Math.min(
           Math.max(
             (scrollPosition + viewportHeight * 0.6 - timelineTop) /
@@ -217,17 +208,11 @@ const Features = () => {
   }, [isTimelineActive]);
 
   return (
-    <section id="features" className="py-20 relative" ref={sectionRef}>
-      {/* Curved Arrow - Modified to match the image design */}
-      <div
-        className="absolute overflow-hidden w-full pointer-events-none hidden md:block"
-        style={{ top: "-57px", left: "6rem" }}
-      >
-        <div style={{ position: "relative" }}>
-          <Image src={Arrow1} alt="Arrow" width={293} height={300} />
-        </div>
-      </div>
-
+    <section
+      id="features"
+      className="py-20 relative overflow-y-hidden"
+      ref={sectionRef}
+    >
       <div className="container mx-auto px-4">
         {/* Title Section with heading and description */}
         <div className="text-center mb-24 relative">
@@ -261,9 +246,9 @@ const Features = () => {
             </span>
           </h2>
           <p className="max-w-2xl mx-auto text-gray-600 text-lg">
-            Because choosing a career shouldn't feel like a wild guess! We're
-            here to guide students to the right path—no confusion, no regrets,
-            just smart choices <span className="inline-block">❤️</span>
+            Because choosing a career shouldn&apos;t feel like a wild guess!
+            We&apos;re here to guide students to the right path—no confusion, no
+            regrets, just smart choices <span className="inline-block">❤️</span>
           </p>
         </div>
 
@@ -370,7 +355,10 @@ const Features = () => {
                         size="lg"
                         className="md:w-80 relative bg-enquire-gradient text-black font-medium rounded-full shadow-lg border border-[#FFFFFF1A] before:absolute before:inset-[-2px] before:rounded-full before:border before:border-[#FFFFFF33] before:-z-10 text-sm sm:text-base w-full sm:w-auto"
                       >
-                        {feature.buttonText} →
+                        <span>{feature.buttonText} </span>
+                        <div className="ml-2 bg-white rounded-lg w-5 h-4 px-[2px] py-[2px] flex items-center justify-center">
+                          <ArrowRightIcon className="w-3 h-3" />
+                        </div>
                       </Button>
                     </div>
                   </div>

@@ -1,3 +1,4 @@
+import DidYouKnow from "./DidYouKnow";
 import Features from "./Faatures";
 import Header from "./Header";
 import Hero from "./Hero";
@@ -9,6 +10,7 @@ export default function LandingPage() {
       <Header />
       <Hero />
       <Features />
+      <DidYouKnow />
     </div>
   );
 }

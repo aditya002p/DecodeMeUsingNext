@@ -9,7 +9,7 @@ import Hero1 from "../../../public/Hero1.svg";
 import Hero2 from "../../../public/Hero2.svg";
 import Hero3 from "../../../public/Hero3.svg";
 import Avatar1 from "../../../public/avatar.svg";
-
+import Arrow1 from "../../../public/Arrow.png";
 // Carousel data structure
 const carouselData = [
   {
@@ -153,6 +153,14 @@ export default function Hero() {
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
+      </div>
+      <div
+        className="relative w-full pointer-events-none hidden md:block"
+        style={{ top: "-55px", paddingLeft: "6rem" }}
+      >
+        <div style={{ position: "absolute" }}>
+          <Image src={Arrow1} alt="Arrow" width={293} height={300} />
+        </div>
       </div>
     </div>
   );
