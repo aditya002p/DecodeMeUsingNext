@@ -11,6 +11,8 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
+        "custom-gradient1":
+          "radial-gradient(50% 50% at 50% 50%, #442D00 0%, rgba(68, 45, 0, 0) 100%)",
         "custom-gradient":
           "linear-gradient(to bottom, rgba(51, 51, 51, 0.3) 0%, rgba(51, 51, 51, 0) 100%)",
         "border-image-source":
