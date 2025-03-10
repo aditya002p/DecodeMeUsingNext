@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { motion } from "framer-motion";
@@ -78,13 +77,12 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
             <div className="w-full flex justify-center items-center z-10 mt-8 mb-4">
               <Image
                 src={card.image}
-                alt={card.title}
-                width={360}
-                height={360}
+                alt={card.title || card.description}
+                width={215}
+                height={215}
                 className="object-contain"
               />
             </div>
-
             {/* Text content below image */}
             <div className="w-full flex flex-col gap-2 z-10 px-2 text-center justify-center my-auto">
               <h2 className="text-xl font-normal leading-10 mt-2">
@@ -103,63 +101,77 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
             </div>
           </div>
 
-          {/* Desktop layout: Preserve original layout */}
+          {/* Desktop layout: Based on the design in images */}
           <div className="hidden md:flex md:flex-row md:w-full">
-            {/* Image positioning with special case for first card */}
             {isFirstCard ? (
-              <div className="absolute -top-24 left-10 z-10">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  width={215}
-                  height={250}
-                  className="object-contain"
-                />
-              </div>
+              <>
+                {/* Special treatment for first card - keeping original */}
+                <div className="absolute -top-24 left-10 z-10">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    width={250}
+                    height={250}
+                    className="object-contain"
+                  />
+                </div>
+                <div className="w-1/2 flex flex-col gap-4 z-10 mt-20 order-1">
+                  <h2 className="text-3xl font-normal leading-tight">
+                    {card.title}
+                  </h2>
+                  {card.hasBoldText ? (
+                    <p className="text-5xl text-[#000000]">
+                      <span className="font-bold">{card.boldTextPart}</span>
+                      <span>{card.regularTextPart}</span>
+                    </p>
+                  ) : (
+                    <p className="text-5xl text-[#000000] font-medium">
+                      {card.description}
+                    </p>
+                  )}
+                </div>
+              </>
             ) : (
-              <div
-                className={`w-1/2 flex ${
-                  card.quotePosition === "topLeft"
-                    ? "justify-end pr-8"
-                    : "justify-start pl-8"
-                } items-center z-10 ${
-                  card.quotePosition === "topLeft" ? "order-1" : "order-2"
-                }`}
-              >
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  width={300}
-                  height={300}
-                  className="object-contain "
-                />
-              </div>
+              <>
+                {/* For cards with quote on the left: Text on right, image on left below quote */}
+                {card.quotePosition === "topLeft" ? (
+                  <>
+                    <div className="w-1/4 flex justify-start items-center z-10 pl-12 pt-16">
+                      <Image
+                        src={card.image}
+                        alt={card.description}
+                        width={300}
+                        height={300}
+                        className="object-contain mt-56"
+                      />
+                    </div>
+                    <div className="w-2/3 flex flex-col justify-center z-10">
+                      <p className="text-5xl text-[#000000] font-medium text-end">
+                        {card.description}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* For cards with quote on the right: Text on left, image on right below quote */}
+                    <div className="w-1/2 flex flex-col justify-center z-10 pl-12">
+                      <p className="text-5xl text-[#000000] font-medium">
+                        {card.description}
+                      </p>
+                    </div>
+                    <div className="w-1/2 flex justify-end items-center z-10 pr-12 pt-16">
+                      <Image
+                        src={card.image}
+                        alt={card.description}
+                        width={300}
+                        height={300}
+                        className="object-contain mt-48"
+                      />
+                    </div>
+                  </>
+                )}
+              </>
             )}
-
-            {/* Text content with alternating positioning */}
-            <div
-              className={`w-1/2 flex flex-col gap-4 z-10  ${
-                isFirstCard
-                  ? "mt-20 order-1"
-                  : card.quotePosition === "topLeft"
-                  ? "order-2 pl-8"
-                  : "order-1 pl-32"
-              }`}
-            >
-              <h2 className="text-3xl font-normal leading-tight">
-                {card.title}
-              </h2>
-              {card.hasBoldText ? (
-                <p className="text-5xl text-[#000000]">
-                  <span className="font-bold">{card.boldTextPart}</span>
-                  <span>{card.regularTextPart}</span>
-                </p>
-              ) : (
-                <p className="text-5xl text-[#000000] font-medium">
-                  {card.description}
-                </p>
-              )}
-            </div>
           </div>
         </div>
       </motion.div>

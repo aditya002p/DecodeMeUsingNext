@@ -7,6 +7,7 @@ import cartoon3 from "../../../../public/cartoon3.png";
 import cartoon4 from "../../../../public/cartoon4.png";
 import cartoon5 from "../../../../public/cartoon5.png";
 import cartoon6 from "../../../../public/cartoon6.png";
+import cartoon7 from "../../../../public/cartoon7.svg";
 import dots from "../../../../public/dots.png";
 
 // Define the card data interface
@@ -18,17 +19,17 @@ export interface CardProps {
   backgroundCardImage: any;
   cardBackgroundColor: string;
   quotePosition: "topLeft" | "topRight";
-  imagePosition: "topLeft" | "default";
+  imagePosition: "topLeft" | "default" | "left" | "right";
   hasBoldText?: boolean;
   boldTextPart?: string;
   regularTextPart?: string;
 }
 
-// Sample card data array with cards matching the images
+// Updated card data array to match the images
 export const cardsData: CardProps[] = [
   {
     id: 1,
-    title: "Meet Decoding Me---",
+    title: "Meet Decoding Me-—",
     description:
       "India's 1st career exploration platform crafted just for school students like you.",
     image: cartoon1,
@@ -43,12 +44,12 @@ export const cardsData: CardProps[] = [
   {
     id: 2,
     title: "",
-    description: "We're not your basic career counselor",
+    description: "We're not your basic career counselor.",
     image: cartoon2,
     backgroundCardImage: dots,
     cardBackgroundColor: "#FFF9E6", // Light cream for card
     quotePosition: "topLeft",
-    imagePosition: "default",
+    imagePosition: "right",
   },
   {
     id: 3,
@@ -58,7 +59,7 @@ export const cardsData: CardProps[] = [
     backgroundCardImage: dots,
     cardBackgroundColor: "#442D00", // Brown for card
     quotePosition: "topRight",
-    imagePosition: "default",
+    imagePosition: "right",
   },
   {
     id: 4,
@@ -68,7 +69,7 @@ export const cardsData: CardProps[] = [
     backgroundCardImage: dots,
     cardBackgroundColor: "#FFDD33", // Yellow for card
     quotePosition: "topLeft",
-    imagePosition: "default",
+    imagePosition: "left",
   },
   {
     id: 5,
@@ -79,29 +80,29 @@ export const cardsData: CardProps[] = [
     backgroundCardImage: dots,
     cardBackgroundColor: "#FFF9E6", // Light cream for card
     quotePosition: "topRight",
-    imagePosition: "default",
+    imagePosition: "right",
   },
   {
     id: 6,
     title: "",
     description:
-      "We'll give you an experience of the real-world work done in each career,you can decide if it's your jam.",
-    image: cartoon6, // Reusing image for demonstration
+      "We'll give you an experience of the real-world work done in each career, you can decide if it's your jam.",
+    image: cartoon6,
     backgroundCardImage: dots,
     cardBackgroundColor: "#5C3D2E", // Brown for card
     quotePosition: "topLeft",
-    imagePosition: "default",
+    imagePosition: "left",
   },
   {
     id: 7,
     title: "",
     description:
-      "And yes, we keep it real in simple, no-nonsense Saral Bhasha!",
-    image: cartoon1, // Reusing image for demonstration
+      "And yes, we keep it real— in simple, no-nonsense Saral Bhasha!",
+    image: cartoon7,
     backgroundCardImage: dots,
     cardBackgroundColor: "#FFDD33", // Yellow for card
     quotePosition: "topRight",
-    imagePosition: "default",
+    imagePosition: "right",
   },
 ];
 
