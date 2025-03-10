@@ -1,13 +1,14 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { useScroll, useTransform, useSpring } from "framer-motion";
+import { useScroll } from "framer-motion";
 import FeatureCard from "./FeatureCard";
 import { cardsData } from "./CardsData";
 
 export default function StickyFeatures() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollHeight, setScrollHeight] = useState(0);
+  const [visibleCardIndex, setVisibleCardIndex] = useState(0);
 
   const { scrollY } = useScroll({
     target: containerRef,
@@ -23,34 +24,47 @@ export default function StickyFeatures() {
 
     updateScrollHeight();
     window.addEventListener("resize", updateScrollHeight);
+
     return () => window.removeEventListener("resize", updateScrollHeight);
   }, []);
 
-  const progress = useTransform(scrollY, [0, scrollHeight], [0, 1]);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
 
-  // Calculate scales for each card with improved stacking effect
-  const scales = cardsData.map((_, index) => {
-    // Create a more pronounced stacking effect
-    const targetScale = 1 - (cardsData.length - index) * 0.04; // Increased from 0.03 to 0.04 for more distinct stacking
+      const containerHeight = containerRef.current.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      const scrollPosition = window.scrollY - containerRef.current.offsetTop;
 
-    // Adjust range to create smoother transitions between cards
-    const start = index * (1 / (cardsData.length + 0.5));
-    const end = start + 1 / (cardsData.length + 0.5);
-    const range: [number, number] = [start, end];
+      // Calculate the section height for each card
+      const sectionHeight = containerHeight / cardsData.length;
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    return useSpring(useTransform(progress, range, [1, targetScale]), {
-      damping: 25,
-      stiffness: 250,
-    });
-  });
+      // Calculate which card should be visible based on scroll position
+      let newVisibleIndex = Math.floor(scrollPosition / sectionHeight);
+
+      // Clamp the index to valid range
+      newVisibleIndex = Math.max(
+        0,
+        Math.min(newVisibleIndex, cardsData.length - 1)
+      );
+
+      setVisibleCardIndex(newVisibleIndex);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen w-full bg-white">
-      <div className="max-w-[1320px] mx-auto px-4 pt-10 sm:pt-16 md:pt-20 pb-20 sm:pb-32 md:pb-40">
+    <div ref={containerRef} className="relative w-full bg-white mx-auto">
+      <div className="w-full mx-auto px-4 pt-10 sm:pt-16 md:pt-24 pb-20 sm:pb-32 md:pb-40">
         <div className="space-y-32 sm:space-y-48 md:space-y-64 lg:space-y-96">
           {cardsData.map((card, index) => (
-            <FeatureCard key={card.id} card={card} scale={scales[index]} />
+            <FeatureCard
+              key={card.id}
+              card={card}
+              isVisible={index === visibleCardIndex}
+            />
           ))}
         </div>
       </div>

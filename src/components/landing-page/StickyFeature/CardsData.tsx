@@ -1,8 +1,12 @@
+// CardsData.tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import cartoon1 from "../../../../public/cartoon1.png";
 import cartoon2 from "../../../../public/cartoon2.png";
 import cartoon3 from "../../../../public/cartoon3.png";
 import cartoon4 from "../../../../public/cartoon4.png";
 import cartoon5 from "../../../../public/cartoon5.png";
+import cartoon6 from "../../../../public/cartoon6.png";
 import dots from "../../../../public/dots.png";
 
 // Define the card data interface
@@ -38,9 +42,8 @@ export const cardsData: CardProps[] = [
   },
   {
     id: 2,
-    title: "We're not your basic career counselor",
-    description:
-      "We go beyond traditional counseling to help you discover your true potential.",
+    title: "",
+    description: "We're not your basic career counselor",
     image: cartoon2,
     backgroundCardImage: dots,
     cardBackgroundColor: "#FFF9E6", // Light cream for card
@@ -49,8 +52,8 @@ export const cardsData: CardProps[] = [
   },
   {
     id: 3,
-    title: "We're not here to tell you what to do;",
-    description: "",
+    title: "",
+    description: "We're not here to tell you what to do;",
     image: cartoon3,
     backgroundCardImage: dots,
     cardBackgroundColor: "#442D00", // Brown for card
@@ -59,8 +62,8 @@ export const cardsData: CardProps[] = [
   },
   {
     id: 4,
-    title: "We're here to let you experience every career!",
-    description: "",
+    title: "",
+    description: "We're here to let you experience every career!",
     image: cartoon4,
     backgroundCardImage: dots,
     cardBackgroundColor: "#FFDD33", // Yellow for card
@@ -69,8 +72,9 @@ export const cardsData: CardProps[] = [
   },
   {
     id: 5,
-    title: "Wanna explore fashion designer, CA, or robotics engineer?",
-    description: "We got you.",
+    title: "",
+    description:
+      "Wanna explore fashion designer, CA, or robotics engineer? We got you.",
     image: cartoon5,
     backgroundCardImage: dots,
     cardBackgroundColor: "#FFF9E6", // Light cream for card
@@ -79,10 +83,10 @@ export const cardsData: CardProps[] = [
   },
   {
     id: 6,
-    title:
-      "We'll give you an experience of the real-world work done in each career,",
-    description: "you can decide if it's your jam.",
-    image: cartoon4, // Reusing image for demonstration
+    title: "",
+    description:
+      "We'll give you an experience of the real-world work done in each career,you can decide if it's your jam.",
+    image: cartoon6, // Reusing image for demonstration
     backgroundCardImage: dots,
     cardBackgroundColor: "#5C3D2E", // Brown for card
     quotePosition: "topLeft",
@@ -90,8 +94,9 @@ export const cardsData: CardProps[] = [
   },
   {
     id: 7,
-    title: "And yes, we keep it real---",
-    description: "in simple, no-nonsense Saral Bhasha!",
+    title: "",
+    description:
+      "And yes, we keep it real in simple, no-nonsense Saral Bhasha!",
     image: cartoon1, // Reusing image for demonstration
     backgroundCardImage: dots,
     cardBackgroundColor: "#FFDD33", // Yellow for card
@@ -113,7 +118,7 @@ export const QuoteLeftSVG = ({ color }: { color: string }) => {
   return (
     <svg
       width="158"
-      height="131"
+      height="130"
       viewBox="0 0 158 131"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

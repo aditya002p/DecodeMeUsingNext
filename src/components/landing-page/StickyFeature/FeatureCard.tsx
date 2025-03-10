@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { motion } from "framer-motion";
@@ -38,10 +39,10 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
   const quoteColor = getQuoteColor(card.id);
 
   return (
-    <div className="sticky top-0 sm:top-4 md:top-20 w-full pt-6 sm:pt-8 md:pt-10">
+    <div className="sticky top-0 sm:top-4 md:top-20 w-full pt-6 sm:pt-8 md:pt-10 ">
       <motion.div style={{ scale }} className="rounded-3xl mx-auto">
         <div
-          className="relative flex flex-col md:flex-row items-center p-4 sm:p-6 md:p-12 gap-4 sm:gap-6 md:gap-8 min-h-[400px] sm:min-h-[500px] md:h-[600px] rounded-t-[32px] sm:rounded-t-[48px] md:rounded-t-[64px] w-full max-w-[1300px] mx-auto"
+          className="relative flex flex-col md:flex-row items-center sm:p-6 md:p-12 gap-6 md:gap-8 min-h-[500px] md:h-[600px] rounded-t-[32px] sm:rounded-t-[48px] md:rounded-t-[64px] w-full md:max-w-7xl mx-auto"
           style={{
             backgroundColor: card.cardBackgroundColor,
           }}
@@ -60,8 +61,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
           <div
             className={`absolute z-20 ${
               card.quotePosition === "topLeft"
-                ? "top-2 sm:top-4 md:top-6 left-2 sm:left-4 md:left-6"
-                : "top-2 sm:top-4 md:top-6 right-2 sm:right-4 md:right-6"
+                ? "top-2 sm:top-4 md:top-20 left-2 sm:left-4 md:left-20"
+                : "top-2 sm:top-4 md:top-20 right-2 sm:right-4 md:right-20"
             }`}
           >
             {card.quotePosition === "topLeft" ? (
@@ -78,15 +79,15 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
               <Image
                 src={card.image}
                 alt={card.title}
-                width={180}
-                height={180}
+                width={360}
+                height={360}
                 className="object-contain"
               />
             </div>
 
             {/* Text content below image */}
-            <div className="w-full flex flex-col gap-2 z-10 px-2 text-center">
-              <h2 className="text-xl font-normal leading-tight mt-2">
+            <div className="w-full flex flex-col gap-2 z-10 px-2 text-center justify-center my-auto">
+              <h2 className="text-xl font-normal leading-10 mt-2">
                 {card.title}
               </h2>
               {card.hasBoldText ? (
@@ -95,7 +96,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
                   <span>{card.regularTextPart}</span>
                 </p>
               ) : (
-                <p className="text-base sm:text-lg text-[#000000]">
+                <p className="text-base sm:text-lg text-[#000000] justify-center items-center my-auto">
                   {card.description}
                 </p>
               )}
@@ -117,7 +118,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
               </div>
             ) : (
               <div
-                className={`w-1/2 flex justify-center items-center z-10 ${
+                className={`w-1/2 flex ${
+                  card.quotePosition === "topLeft"
+                    ? "justify-end pr-8"
+                    : "justify-start pl-8"
+                } items-center z-10 ${
                   card.quotePosition === "topLeft" ? "order-1" : "order-2"
                 }`}
               >
@@ -126,14 +131,14 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
                   alt={card.title}
                   width={300}
                   height={300}
-                  className="object-contain"
+                  className="object-contain "
                 />
               </div>
             )}
 
             {/* Text content with alternating positioning */}
             <div
-              className={`w-1/2 flex flex-col gap-4 z-10 ${
+              className={`w-1/2 flex flex-col gap-4 z-10  ${
                 isFirstCard
                   ? "mt-20 order-1"
                   : card.quotePosition === "topLeft"
@@ -150,7 +155,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
                   <span>{card.regularTextPart}</span>
                 </p>
               ) : (
-                <p className="text-5xl text-[#000000]">{card.description}</p>
+                <p className="text-5xl text-[#000000] font-medium">
+                  {card.description}
+                </p>
               )}
             </div>
           </div>
