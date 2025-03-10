@@ -1,0 +1,24 @@
+interface QuoteIconProps {
+  position: "topLeft" | "topRight";
+}
+
+export const QuoteIcon: React.FC<QuoteIconProps> = ({ position }) => {
+  // Adjust classes based on position
+  const positionClasses =
+    position === "topLeft" ? "top-8 left-8" : "top-8 right-8";
+
+  return (
+    <div className={`absolute opacity-25 ${positionClasses}`}>
+      <svg
+        width="158"
+        height="130"
+        viewBox="0 0 158 130"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M89.7343 0C117.732 1.96344 157.978 6.42462 158 61.1481V130H95.5236V56.3334H116.269C117.583 36.6631 101.353 31.5839 83.7039 27.6851L89.7343 0ZM6.03059 0C34.0286 1.96344 74.2742 6.42475 74.2962 61.1481V130H11.8197V56.3334H32.5649C33.8793 36.6631 17.6491 31.5839 0 27.6851L6.03059 0Z" />
+      </svg>
+      <svg></svg>
+    </div>
+  );
+};

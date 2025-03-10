@@ -92,10 +92,10 @@ const DidYouKnow: React.FC<DidYouKnowProps> = ({
       </div>
       <div
         className="relative w-full pointer-events-none hidden md:block"
-        style={{ top: "0px", paddingLeft: "53rem" }}
+        style={{ top: "0px", paddingLeft: "48rem" }}
       >
         <div style={{ position: "absolute" }}>
-          <Image src={ArrowDown} alt="Arrow" width={300} height={300} />
+          <Image src={ArrowDown} alt="Arrow" width={400} height={400} />
         </div>
       </div>
     </div>
