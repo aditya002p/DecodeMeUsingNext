@@ -261,16 +261,6 @@ const Features = () => {
               style={{ marginTop: "60px", marginBottom: "60px" }}
             ></div>
 
-            {/* Moving indicator dot */}
-            <div
-              ref={indicatorRef}
-              className="absolute w-6 h-6 bg-[#442D00] rounded-full left-1/2 transform -translate-x-1/2 transition-all duration-300 ease-in-out z-20"
-              style={{
-                boxShadow: "0 0 8px rgba(68, 45, 0, 0.7)",
-                marginTop: "60px",
-              }}
-            ></div>
-
             {/* Checkpoint markers */}
             {featureItems.map((feature, index) => (
               <div
