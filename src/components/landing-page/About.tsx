@@ -1,0 +1,317 @@
+"use client";
+import React from "react";
+import Image from "next/image";
+import { cn } from "@/utils/utils";
+import Button from "./Button";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+import aboutAuthor from "../../../public/About.svg";
+import ArrowDown from "../../../public/Arrow2.png";
+
+// Reusable Card Component with custom SVG banners
+const JourneyCard = ({ title, items, itemStyle = "red", bannerSvg }) => {
+  return (
+    <div className="bg-white rounded-[32px] p-6 relative">
+      {/* Custom SVG banner that will be different for each card */}
+      <div className="absolute -top-5 left-0 right-0 w-full overflow-hidden">
+        <div className="relative h-12">{bannerSvg}</div>
+      </div>
+
+      <div className="mt-8 space-y-4">
+        {items.map((item, index) => (
+          <div key={index} className="flex items-start">
+            <span
+              className={`${
+                itemStyle === "red" ? "text-red-500" : "text-amber-400"
+              } mr-2 mt-1`}
+            >
+              {itemStyle === "red" ? "🔻" : "✨"}
+            </span>
+            <p
+              className="text-gray-800"
+              dangerouslySetInnerHTML={{ __html: item }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const About = () => {
+  // SVG banners for each card
+  const careerCrisisBanner = (
+    <svg
+      width="100%"
+      height="31"
+      viewBox="0 0 281 31"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute top-3 left-4 right-5"
+    >
+      <path
+        d="M29.3353 0.300299C29.3353 0.300299 24.8335 0.00695103 21.9769 0.300299C12.852 1.23736 0.953125 10.1699 0.953125 10.1699L29.3353 10.1699V0.300299Z"
+        fill="#AE2D25"
+      />
+      <path
+        d="M252.337 0.300299C252.337 0.300299 256.838 0.00695105 259.695 0.300299C268.82 1.23736 280.719 10.1699 280.719 10.1699L252.337 10.1699V0.300299Z"
+        fill="#AE2D25"
+      />
+      <path
+        d="M18.5234 0.169922H261.799L241.192 27.7604C240.059 29.2768 238.277 30.1699 236.385 30.1699H48.3903C46.6974 30.1699 45.0833 29.4547 43.9459 28.2007L18.5234 0.169922Z"
+        fill="#D1433A"
+      />
+      <text
+        x="140"
+        y="20"
+        textAnchor="middle"
+        fill="white"
+        fontWeight="bold"
+        fontSize="12"
+        fontFamily="Arial"
+      >
+        CAREER CRISIS
+      </text>
+    </svg>
+  );
+
+  const breakthroughBanner = (
+    <svg
+      width="100%"
+      height="31"
+      viewBox="0 0 281 31"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute top-3 left-4 right-5"
+    >
+      <path
+        d="M29.3353 0.300299C29.3353 0.300299 24.8335 0.00695103 21.9769 0.300299C12.852 1.23736 0.953125 10.1699 0.953125 10.1699L29.3353 10.1699V0.300299Z"
+        fill="#AE2D25"
+      />
+      <path
+        d="M252.337 0.300299C252.337 0.300299 256.838 0.00695105 259.695 0.300299C268.82 1.23736 280.719 10.1699 280.719 10.1699L252.337 10.1699V0.300299Z"
+        fill="#AE2D25"
+      />
+      <path
+        d="M18.5234 0.169922H261.799L241.192 27.7604C240.059 29.2768 238.277 30.1699 236.385 30.1699H48.3903C46.6974 30.1699 45.0833 29.4547 43.9459 28.2007L18.5234 0.169922Z"
+        fill="#D1433A"
+      />
+      <text
+        x="140"
+        y="20"
+        textAnchor="middle"
+        fill="white"
+        fontWeight="bold"
+        fontSize="12"
+        fontFamily="Arial"
+      >
+        BREAKTHROUGH
+      </text>
+    </svg>
+  );
+
+  const solutionBanner = (
+    <svg
+      width="100%"
+      height="31"
+      viewBox="0 0 281 31"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute top-3 left-4 right-5"
+    >
+      <path
+        d="M29.3353 0.300299C29.3353 0.300299 24.8335 0.00695103 21.9769 0.300299C12.852 1.23736 0.953125 10.1699 0.953125 10.1699L29.3353 10.1699V0.300299Z"
+        fill="#AE2D25"
+      />
+      <path
+        d="M252.337 0.300299C252.337 0.300299 256.838 0.00695105 259.695 0.300299C268.82 1.23736 280.719 10.1699 280.719 10.1699L252.337 10.1699V0.300299Z"
+        fill="#AE2D25"
+      />
+      <path
+        d="M18.5234 0.169922H261.799L241.192 27.7604C240.059 29.2768 238.277 30.1699 236.385 30.1699H48.3903C46.6974 30.1699 45.0833 29.4547 43.9459 28.2007L18.5234 0.169922Z"
+        fill="#D1433A"
+      />
+      <text
+        x="140"
+        y="20"
+        textAnchor="middle"
+        fill="white"
+        fontWeight="bold"
+        fontSize="12"
+        fontFamily="Arial"
+      >
+        SOLUTION - DECODING ME
+      </text>
+    </svg>
+  );
+
+  // Card content data
+  const cardsData = [
+    {
+      title: "CAREER CRISIS",
+      items: [
+        "Even after the career tests, she <span class='font-semibold'>wasn't confident</span> about her ideal career type",
+        "Her <span class='font-semibold'>peers faced the same struggle</span>—existing solutions didn't help",
+        "She <span class='font-semibold'>spent years figuring out her career type</span> — wasting time & potential",
+      ],
+      itemStyle: "red",
+      bannerSvg: careerCrisisBanner,
+    },
+    {
+      title: "BREAKTHROUGH",
+      items: [
+        "Realized that <span class='font-semibold'>career clarity</span> earlier = financial & professional growth.",
+        "Recognized a <span class='font-semibold'>national problem</span>—India's youth is lost, in turn affecting the GDP.",
+        "Dreamt of a <span class='font-semibold'>solution</span> that empowers school students to explore all careers to find their career type",
+      ],
+      itemStyle: "red",
+      bannerSvg: breakthroughBanner,
+    },
+    {
+      title: "SOLUTION - DECODING ME",
+      items: [
+        "A platform that helps students <span class='font-semibold'>discover, explore, and validate careers.</span>",
+        "<span class='font-semibold'>No more confusion</span>—just clarity, exposure, and informed decisions.",
+        "A platform to help students <span class='font-semibold'>explore careers before it's too late</span>",
+      ],
+      itemStyle: "gold",
+      bannerSvg: solutionBanner,
+    },
+  ];
+
+  return (
+    <div className="bg-[#FFFDF7] py-16 px-4">
+      <div className="max-w-6xl mx-auto space-y-16">
+        {/* Founder section */}
+        <div className="bg-white rounded-3xl p-8 md:p-12 relative flex flex-col md:flex-row items-center gap-8 drop-shadow-lg">
+          <div className="w-full md:w-3/5 space-y-8 z-10">
+            <div>
+              <p className="text-gray-700 font-medium uppercase text-sm tracking-wide">
+                ABOUT FOUNDER
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
+                KHUSHBU CHOPDA
+              </h2>
+            </div>
+
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <span className="text-gray-500 mr-2">•</span>
+                <span className="text-gray-700">
+                  Mechanical engineer with a granted product patent
+                </span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-gray-500 mr-2">•</span>
+                <span className="text-gray-700">
+                  Pursued MBA from NMIMS, Mumbai
+                </span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-gray-500 mr-2">•</span>
+                <span className="text-gray-700">
+                  Since childhood, she wanted to create something impactful,
+                  remembered by every household
+                </span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-gray-500 mr-2">•</span>
+                <span className="text-gray-700">
+                  Founded Decoding Me to solve a problem she personally
+                  experienced
+                </span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-gray-500 mr-2">•</span>
+                <span className="text-gray-700">
+                  On a mission to empower youth to choose their career type with
+                  confidence and clarity
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Quote SVG positioned absolutely */}
+          <div className="absolute top-8 right-1/2 md:right-1/4 text-gray-200 lg:block hidden z-10">
+            <svg
+              width="98"
+              height="81"
+              viewBox="0 0 98 81"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M55.7617 0.09375C72.9713 1.30202 97.7091 4.04736 97.7227 37.7233V80.0938H59.3203V34.7605H72.0717C72.8795 22.6557 62.9035 19.53 52.0551 17.1307L55.7617 0.09375ZM4.31158 0.09375C21.5211 1.30202 46.2589 4.04744 46.2724 37.7233V80.0938H7.86999V34.7605H20.6214C21.4293 22.6557 11.4531 19.53 0.604752 17.1307L4.31158 0.09375Z"
+                fill="black"
+                fillOpacity="0.1"
+              />
+            </svg>
+          </div>
+
+          {/* Image container with absolute positioning for large screens */}
+          <div className="w-full md:w-2/5">
+            <div className="absolute md:right-[-90px] md:top-0 md:bottom-0 md:w-2/5 lg:w-1/2 xl:w-2/5">
+              <div className="relative h-full w-full">
+                <Image
+                  src={aboutAuthor}
+                  alt="Khushbu Chopda"
+                  className="rounded-lg md:rounded-r-3xl md:rounded-l-none object-cover h-full block"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Why did she choose section */}
+        <div className="relative pt-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            Why did she choose to start Decoding Me?
+          </h2>
+          <p className="text-center text-gray-700 mb-12">
+            🚀 Imagine if every young graduate explored careers in
+            school—India's economy would be unstoppable!
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[360px] drop-shadow-xl">
+            {/* Render cards using the JourneyCard component */}
+            {cardsData.map((card, index) => (
+              <JourneyCard
+                key={index}
+                title={card.title}
+                items={card.items}
+                itemStyle={card.itemStyle}
+                bannerSvg={card.bannerSvg}
+              />
+            ))}
+          </div>
+
+          {/* Explore More Button */}
+          <div className="flex justify-center mt-12 relative">
+            <Button
+              variant="fill"
+              size="lg"
+              className="relative bg-enquire-gradient text-black font-medium rounded-full shadow-lg border border-[#FFFFFF1A] before:absolute before:inset-[-2px] before:rounded-full before:border before:border-[#FFFFFF33] before:-z-10"
+            >
+              Explore More Careers
+              <div className="ml-2 bg-white rounded-lg w-5 h-4 px-[2px] py-[2px]">
+                <ArrowRightIcon className="" />
+              </div>
+            </Button>
+          </div>
+        </div>
+      </div>
+      <div
+        className="relative w-full pointer-events-none hidden lg:block"
+        style={{ top: "-90px", paddingLeft: "52rem" }}
+      >
+        <div style={{ position: "relative" }}>
+          <Image src={ArrowDown} alt="Arrow" width={400} height={400} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default About;

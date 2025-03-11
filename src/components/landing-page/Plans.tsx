@@ -3,7 +3,7 @@ import Image from "next/image";
 import { cn } from "@/utils/utils";
 import vision from "../../../public/vision-eye.svg";
 import mission from "../../../public/mission-target.svg";
-
+import Arrow1 from "../../../public/Arrow.png";
 const PlanCard = ({ title, description, icon, alt }) => (
   <div className="relative w-full mx-auto max-w-xl">
     {/* White base card */}
@@ -63,10 +63,18 @@ const Plans = ({ className }) => {
   return (
     <section className={cn("py-12 md:py-24 relative", className)}>
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <PlanCard key={index} {...plan} />
           ))}
+        </div>
+      </div>
+      <div
+        className="relative w-full pointer-events-none hidden lg:block"
+        style={{ top: "0px", paddingLeft: "6rem" }}
+      >
+        <div style={{ position: "absolute" }}>
+          <Image src={Arrow1} alt="Arrow" width={293} height={300} />
         </div>
       </div>
     </section>

@@ -1,3 +1,4 @@
+import About from "./About";
 import DidYouKnow from "./DidYouKnow";
 import Features from "./Features";
 import Header from "./Header";
@@ -15,6 +16,7 @@ export default function LandingPage() {
       <DidYouKnow />
       <StickyFeatures />
       <Plans />
+      <About />
     </div>
   );
 }

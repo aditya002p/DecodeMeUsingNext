@@ -208,11 +208,7 @@ const Features = () => {
   }, [isTimelineActive]);
 
   return (
-    <section
-      id="features"
-      className="py-20 relative overflow-y-hidden"
-      ref={sectionRef}
-    >
+    <section id="features" className="my-20 relative" ref={sectionRef}>
       <div className="container mx-auto px-4 sm:justify-center sm:items-center">
         {/* Title Section with heading and description */}
         <div className="text-center mb-24 relative">
