@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/utils/utils";
 
 const sizeClasses = {
-  sm: "px-6 h-10 w-44 font-medium",
+  sm: "px-5 h-10 w-[180px] rounded-[28px] text-base py-1",
   md: "px-6 h-11",
   semi: "w-full h-9 rounded-[32px] py-2 px-3 gap-20 text-sm",
   start: "py-3 px-4 w-full h-[41px] text-sm gap-2 leading-4",
@@ -21,7 +21,7 @@ const variantClasses = {
 
 // Custom inner container for the figma design
 const FigmaInnerContainer = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex flex-row justify-center items-center px-6 py-2 gap-1.5 w-[272px] h-[48px] bg-[radial-gradient(50%_50%_at_50%_50%,#FFF4B3_0%,#FFE235_100%)] border border-white/10 rounded-[32px]">
+  <div className="flex w-full flex-col bg-[radial-gradient(50%_50%_at_50%_50%,#FFF4B3_0%,#FFE235_100%)] border border-white/10 rounded-[32px]">
     {children}
   </div>
 );
