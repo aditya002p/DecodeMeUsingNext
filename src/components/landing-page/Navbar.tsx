@@ -38,7 +38,7 @@ const EnquireButton = () => (
   <Link href="/enquire">
     <Button variant="figma" size="sm" className="font-medium drop-shadow-lg ">
       Enquire Now
-      <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[2.78px] px-[3.19px]">
+      <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
         <svg
           width="15"
           height="9"

@@ -9,6 +9,9 @@ import engineer from "../../../public/engineer.svg";
 import wrongCareer from "../../../public/wrong-career.svg";
 import jobVanish from "../../../public/job-vanish.svg";
 import commerceImg from "../../../public/commerce.svg";
+// Assuming you have this SVG in your assets folder
+import backgroundSvg from "../../../public/FeaturesBg.svg";
+
 interface FeatureItem {
   id: string;
   number: string;
@@ -40,9 +43,9 @@ const featureItems: FeatureItem[] = [
     id: "feature-2",
     number: "02",
     title: 'The "Engineering Default" Button',
-    emoji: "👷",
+    emoji: "🤖",
     description:
-      "Lots of students pick engineering after 12th, but half jump ship! Imagine signing up for a game only to realize you don't like it—yep, that's what happens when students choose a field just because \"everyone else is doing it\"!",
+      "Lots of students pick engineering after 12th, but half jump ship! Imagine signing up for a game only to realize you don't like it—yep, that's what happens when students choose a field just because \"everyone else is doing it\"! 🚀",
     image: engineer,
     imageAlt: "Engineer thinking",
     buttonText: "Explore 12 Other Career Types",
@@ -105,7 +108,10 @@ const Features = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerWidth < 768) {
+      const isMobile = window.innerWidth < 768;
+
+      // For mobile devices, activate all features at once and no timeline
+      if (isMobile) {
         const allActive = featureItems.reduce((acc, feature) => {
           acc[feature.id] = true;
           return acc;
@@ -136,8 +142,8 @@ const Features = () => {
         const timelineRect = timelineElement.getBoundingClientRect();
         const timelineTop = timelineRect.top + window.scrollY;
         const timelineHeight = timelineRect.height;
-        const timelineBottom = timelineTop + timelineHeight;
 
+        // Calculate how much of the timeline should be filled based on scroll position
         const visiblePercentage = Math.min(
           Math.max(
             (scrollPosition + viewportHeight * 0.6 - timelineTop) /
@@ -154,18 +160,12 @@ const Features = () => {
           visiblePercentage * 100
         }%, #D9D9D9 ${visiblePercentage * 100}%)`;
 
-        // Position the indicator dot along the timeline
-        if (indicatorRef.current) {
-          indicatorRef.current.style.top = `${visiblePercentage * 100}%`;
-          indicatorRef.current.style.opacity = isTimelineActive ? "1" : "0";
-        }
-
-        // Update the checkpoints based on the current scroll position
+        // Update checkpoints (boxes with checkmarks) based on scroll position
         checkpointsRef.current.forEach((checkpoint, index) => {
           if (checkpoint) {
             const checkpointPosition = index / (featureItems.length - 1);
 
-            // Set active state
+            // Determine if this checkpoint should be active
             const isActive = visiblePercentage >= checkpointPosition;
 
             // Update visibility and style
@@ -173,7 +173,7 @@ const Features = () => {
             checkpoint.style.borderColor = isActive ? "#442D00" : "#D9D9D9";
             checkpoint.style.opacity = isActive ? "1" : "0.6";
 
-            // For the checkmark icon
+            // Update the checkmark icon visibility
             const checkmarkElement = checkpoint.querySelector("svg");
             if (checkmarkElement) {
               checkmarkElement.style.opacity = isActive ? "1" : "0";
@@ -181,14 +181,14 @@ const Features = () => {
           }
         });
 
-        // Check each feature element to see if it's in view
+        // Activate features based on scroll position
         featureItems.forEach((feature, index) => {
           const element = featureRefs.current[feature.id];
           if (element) {
             const checkpointPosition = index / (featureItems.length - 1);
-            // Mark as active when the scroll position passes this point
             const isVisible = visiblePercentage >= checkpointPosition;
 
+            // Update the active state for this feature
             setActiveFeatures((prev) => ({
               ...prev,
               [feature.id]: isVisible,
@@ -199,11 +199,14 @@ const Features = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
     // Initial check
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, [isTimelineActive]);
 
@@ -212,34 +215,8 @@ const Features = () => {
       <div className="container mx-auto px-4 sm:justify-center sm:items-center">
         {/* Title Section with heading and description */}
         <div className="text-center mb-24 relative">
-          <h2 className="md:text-5xl text-4xl font-bold mb-4 text-[#3E3E3E] tracking-tight">
-            Why Are We Here?{" "}
-            <span className="inline-block align-middle ml-2">
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 48 48"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="24"
-                  cy="24"
-                  r="23"
-                  fill="#FFD966"
-                  stroke="#3A3A3A"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M18 22C18 22 20 19 24 19C28 19 30 22 30 22"
-                  stroke="#3A3A3A"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <circle cx="17" cy="16" r="2" fill="#3A3A3A" />
-                <circle cx="31" cy="16" r="2" fill="#3A3A3A" />
-              </svg>
-            </span>
+          <h2 className="lg:text-5xl text-4xl font-bold mb-4 text-[#3E3E3E] tracking-tight">
+            Why Are We Here? 🤔
           </h2>
           <p className="max-w-2xl mx-auto text-gray-600 text-lg">
             Because choosing a career shouldn&apos;t feel like a wild guess!
@@ -251,16 +228,15 @@ const Features = () => {
         <div className="relative">
           {/* Timeline container - visible only on md screens and up */}
           <div
-            className="absolute left-1/2 transform -translate-x-1/2 h-full hidden md:block"
+            className="absolute left-1/2 transform -translate-x-1/2 h-full hidden lg:block"
             style={{ width: "8px" }}
           >
             {/* Main timeline line */}
             <div
               ref={timelineRef}
-              className="h-full w-full bg-[#D9D9D9] transition-all duration-300 ease-in-out"
+              className="h-full w-full bg-[#D9D9D9] transition-all duration-300 ease-in"
               style={{ marginTop: "60px", marginBottom: "60px" }}
             ></div>
-
             {/* Checkpoint markers */}
             {featureItems.map((feature, index) => (
               <div
@@ -305,8 +281,12 @@ const Features = () => {
                 key={feature.id}
                 ref={(el) => (featureRefs.current[feature.id] = el)}
                 className={`relative flex flex-col ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                } items-center`}
+                  feature.position === "left"
+                    ? "md:flex-row"
+                    : "md:flex-row-reverse"
+                } items-center ${
+                  activeFeatures[feature.id] ? "opacity-100" : "opacity-70"
+                } transition-opacity duration-500`}
               >
                 {/* Content based on position */}
                 <div
@@ -329,28 +309,39 @@ const Features = () => {
                     </div>
 
                     {/* Title and content overlay */}
-                    <div className="-mt-12 md:-mt-16 relative z-10">
-                      <h3 className="text-2xl font-bold mb-2">
+                    <div className="-mt-12 md:-mt-16 relative z-10 items-start">
+                      <h3 className="text-2xl font-bold mb-2 lg:w-[370px] text-start">
                         {feature.title} <span>{feature.emoji}</span>
                       </h3>
-                      <p className="text-gray-600 mb-6">
+                      <p className="text-gray-600 mb-6 text-start lg:w-[400px] text-sm leading-6">
                         {feature.description}
                       </p>
                       <Button
-                        variant="secondary"
+                        variant="figma"
                         size="lg"
-                        className="md:w-80 relative bg-enquire-gradient text-black font-medium rounded-full shadow-lg border border-[#FFFFFF1A] before:absolute before:inset-[-2px] before:rounded-full before:border before:border-[#FFFFFF33] before:-z-10 text-sm sm:text-base w-full sm:w-auto"
+                        className="font-medium drop-shadow-lg"
                       >
-                        <span>{feature.buttonText} </span>
-                        <div className="ml-2 bg-white rounded-lg w-5 h-4 px-[2px] py-[2px] flex items-center justify-center">
-                          <ArrowRightIcon className="w-3 h-3" />
+                        {feature.buttonText}
+                        <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
+                          <svg
+                            width="15"
+                            height="9"
+                            viewBox="0 0 15 9"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
+                              fill="#2A2A2A"
+                            />
+                          </svg>
                         </div>
                       </Button>
                     </div>
                   </div>
                 </div>
 
-                {/* Image section */}
+                {/* Image section with SVG background */}
                 <div
                   className={`w-full md:w-1/2 ${
                     feature.position === "left" ? "md:pl-16" : "md:pr-16"
@@ -361,15 +352,32 @@ const Features = () => {
                       feature.position === "left"
                         ? "md:ml-0 md:mr-auto"
                         : "md:mr-0 md:ml-auto"
-                    } max-w-md`}
+                    } max-w-md relative`}
                   >
-                    <Image
-                      src={feature.image}
-                      alt={feature.imageAlt}
-                      width={400}
-                      height={400}
-                      className="rounded-lg"
-                    />
+                    {/* SVG Background Pattern */}
+                    <div className="absolute inset-0 -z-10 transform scale-125 opacity-30">
+                      <Image
+                        src={backgroundSvg}
+                        alt="Background pattern"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+
+                    {/* Feature Image */}
+                    <div
+                      className={`
+                      rounded-lg overflow-hidden transform transition-all duration-500
+                    `}
+                    >
+                      <Image
+                        src={feature.image}
+                        alt={feature.imageAlt}
+                        width={400}
+                        height={400}
+                        className="rounded-lg z-10 relative"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

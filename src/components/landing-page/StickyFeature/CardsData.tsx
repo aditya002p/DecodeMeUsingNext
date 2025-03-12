@@ -8,7 +8,7 @@ import cartoon4 from "../../../../public/cartoon4.png";
 import cartoon5 from "../../../../public/cartoon5.png";
 import cartoon6 from "../../../../public/cartoon6.png";
 import cartoon7 from "../../../../public/cartoon7.svg";
-import dots from "../../../../public/dots.png";
+import dots from "../../../../public/Dots.svg";
 
 // Define the card data interface
 export interface CardProps {

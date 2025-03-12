@@ -35,20 +35,29 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
     }
   };
 
+  // Get text color based on card id
+  const getTextColor = (id: number) => {
+    if (id === 3 || id === 6) {
+      return "#FFFFFF";
+    }
+    return "#000000";
+  };
+
   const quoteColor = getQuoteColor(card.id);
+  const textColor = getTextColor(card.id);
 
   return (
     <div className="sticky top-0 sm:top-4 md:top-20 w-full pt-6 sm:pt-8 md:pt-10 ">
       <motion.div style={{ scale }} className="rounded-3xl mx-auto">
         <div
-          className="relative flex flex-col md:flex-row items-center sm:p-6 md:p-12 gap-6 md:gap-8 min-h-[500px] md:h-[600px] rounded-t-[32px] sm:rounded-t-[48px] md:rounded-t-[64px] w-full md:max-w-7xl mx-auto"
+          className="relative flex flex-col md:flex-row items-center sm:p-6 md:p-12 gap-6 md:gap-8 min-h-[500px] md:h-[600px] rounded-t-[32px] sm:rounded-t-[48px] md:rounded-t-[64px] w-full md:max-w-6xl mx-auto"
           style={{
             backgroundColor: card.cardBackgroundColor,
           }}
         >
           {/* Background Image with lower opacity */}
           <div
-            className="absolute inset-0 z-0 opacity-20 rounded-t-[32px] sm:rounded-t-[48px] md:rounded-t-[64px] overflow-hidden"
+            className="absolute inset-0 z-0 opacity-100 rounded-t-[32px] sm:rounded-t-[48px] md:rounded-t-[64px] overflow-hidden"
             style={{
               backgroundImage: `url(${card.backgroundCardImage.src})`,
               backgroundSize: "cover",
@@ -84,17 +93,26 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
               />
             </div>
             {/* Text content below image */}
-            <div className="w-full flex flex-col gap-2 z-10 px-2 text-center justify-center my-auto">
-              <h2 className="text-xl font-normal leading-10 mt-2">
+            <div className="w-full flex flex-col gap-2 z-10 px-2 text-start justify-center my-auto">
+              <h2 
+                className="text-xl font-normal leading-10 mt-2"
+                style={{ color: textColor }}
+              >
                 {card.title}
               </h2>
               {card.hasBoldText ? (
-                <p className="text-base sm:text-lg text-[#000000]">
+                <p 
+                  className="text-base sm:text-lg"
+                  style={{ color: textColor }}
+                >
                   <span className="font-bold">{card.boldTextPart}</span>
                   <span>{card.regularTextPart}</span>
                 </p>
               ) : (
-                <p className="text-base sm:text-lg text-[#000000] justify-center items-center my-auto">
+                <p 
+                  className="text-base sm:text-lg justify-center items-center my-auto"
+                  style={{ color: textColor }}
+                >
                   {card.description}
                 </p>
               )}
@@ -115,17 +133,26 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
                     className="object-contain"
                   />
                 </div>
-                <div className="w-1/2 flex flex-col gap-4 z-10 mt-20 order-1">
-                  <h2 className="text-3xl font-normal leading-tight">
+                <div className="w-[70%] flex flex-col gap-4 z-10 mt-20 order-1 ">
+                  <h2 
+                    className="text-3xl font-normal leading-[60px]"
+                    style={{ color: textColor }}
+                  >
                     {card.title}
                   </h2>
                   {card.hasBoldText ? (
-                    <p className="text-5xl text-[#000000]">
+                    <p 
+                      className="text-5xl"
+                      style={{ color: textColor }}
+                    >
                       <span className="font-bold">{card.boldTextPart}</span>
                       <span>{card.regularTextPart}</span>
                     </p>
                   ) : (
-                    <p className="text-5xl text-[#000000] font-medium">
+                    <p 
+                      className="text-5xl font-medium"
+                      style={{ color: textColor }}
+                    >
                       {card.description}
                     </p>
                   )}
@@ -136,7 +163,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
                 {/* For cards with quote on the left: Text on right, image on left below quote */}
                 {card.quotePosition === "topLeft" ? (
                   <>
-                    <div className="w-1/4 flex justify-start items-center z-10 pl-12 pt-16">
+                    <div className="w-1/2 flex justify-start items-center z-10 pl-12 pt-16">
                       <Image
                         src={card.image}
                         alt={card.description}
@@ -145,8 +172,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
                         className="object-contain mt-56"
                       />
                     </div>
-                    <div className="w-2/3 flex flex-col justify-center z-10">
-                      <p className="text-5xl text-[#000000] font-medium text-end">
+                    <div className="w-fit flex flex-col justify-center z-10 ">
+                      <p 
+                        className="text-4xl font-medium text-end"
+                        style={{ color: textColor }}
+                      >
                         {card.description}
                       </p>
                     </div>
@@ -155,7 +185,10 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
                   <>
                     {/* For cards with quote on the right: Text on left, image on right below quote */}
                     <div className="w-1/2 flex flex-col justify-center z-10 pl-12">
-                      <p className="text-5xl text-[#000000] font-medium">
+                      <p 
+                        className="text-4xl font-medium text-start"
+                        style={{ color: textColor }}
+                      >
                         {card.description}
                       </p>
                     </div>

@@ -134,14 +134,14 @@ export default function Hero() {
             {currentItem.title}
           </h1>
 
-          <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
+          <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 leading-loose">
             {currentItem.description}
           </p>
 
           <Link href={currentItem.buttonLink}>
             <Button variant="figma" size="lg" className="font-medium drop-shadow-lg">
             Explore Careers Today
-                  <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[2.78px] px-[3.19px]">
+                  <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
                     <svg
                       width="15"
                       height="9"
