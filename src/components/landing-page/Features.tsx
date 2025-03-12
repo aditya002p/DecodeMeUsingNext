@@ -228,7 +228,7 @@ const Features = () => {
         <div className="relative">
           {/* Timeline container - visible only on md screens and up */}
           <div
-            className="absolute left-1/2 transform -translate-x-1/2 h-full hidden lg:block"
+            className="absolute left-1/2 transform -translate-x-1/2 h-full hidden lg:block md:block "
             style={{ width: "8px" }}
           >
             {/* Main timeline line */}
@@ -245,7 +245,7 @@ const Features = () => {
                 className="absolute w-8 h-8 rounded-sm border transform -translate-x-1/2 left-1/2 flex items-center justify-center transition-all duration-300 ease-in-out z-10"
                 style={{
                   top: `${(index / (featureItems.length - 1)) * 100}%`,
-                  marginTop: "60px",
+                  marginTop: "30px",
                   backgroundColor: activeFeatures[feature.id]
                     ? "#442D00"
                     : "#D9D9D9",

@@ -22,7 +22,7 @@ export default function LandingPage() {
       <Plans />
       <About />
       <ComparisonTable />
-      {/* <Outcome /> */}
+      <Outcome />
       <FAQ />
       <Footer />
     </div>

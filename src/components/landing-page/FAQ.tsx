@@ -10,6 +10,8 @@ import {
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Image from "next/image";
 import cartton from "../../../public/cartoon3.png";
+import Button from "./Button";
+
 interface FAQItem {
   title: string;
   content: string;
@@ -19,7 +21,7 @@ const faqData: FAQItem[] = [
   {
     title: "Who shouldn't enroll in this course?",
     content:
-      "If you're looking for a final answer to exactly which job profile to pursue 7-10 years from now, this course isn't for you. Instead, we empower you with tools to reach that decision over time. Students in grades 8-11 are ideal candidates for this course.",
+      "If you're looking for a final answer to exactly which job profile to pursue 7–10 years from now, this course isn't for you. Instead, we empower you with tools to reach that decision over time. Students in grades 8–11 are ideal candidates for this course.",
   },
   {
     title: "How can a student join this course?",
@@ -43,91 +45,81 @@ const faqData: FAQItem[] = [
   },
 ];
 
-interface CustomAccordionTriggerProps {
-  children: React.ReactNode;
-  className?: string;
-  isOpen: boolean;
-  [key: string]: any;
-}
-
-const CustomAccordionTrigger: React.FC<CustomAccordionTriggerProps> = ({
-  children,
-  className,
-  isOpen,
-  ...props
-}) => {
-  return (
-    <AccordionTrigger
-      className={`group flex w-full items-center justify-between py-5 ${className} [&>svg]:hidden`}
-      {...props}
-    >
-      <div className="flex justify-between w-full items-center">
-        {children}
-        <div className="text-gray-700">
-          {isOpen ? (
-            <FiChevronUp className="h-5 w-5" />
-          ) : (
-            <FiChevronDown className="h-5 w-5" />
-          )}
-        </div>
-      </div>
-    </AccordionTrigger>
-  );
-};
-
 const FAQ: React.FC = () => {
-  const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
+  const [openItem, setOpenItem] = useState<string | null>(null);
 
-  const toggleItem = (value: string) => {
-    setOpenItems((prev) => ({
-      ...prev,
-      [value]: !prev[value],
-    }));
+  const handleToggle = (value: string) => {
+    setOpenItem(openItem === value ? null : value);
   };
 
   return (
-    <div className="bg-[#fffcf4] py-16 md:py-20 px-4">
-      <div className="max-w-3xl mx-auto">
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Frequently Asked Questions
-          </h2>
-          <div className="hidden md:block">
+    <div className="bg-[#fffcf4] py-16 md:py-40 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="relative flex justify-center mb-16">
+          <div className="absolute right-0 -top-36 ">
             <Image
               src={cartton}
               alt="Rocket boy illustration"
-              width={150}
-              height={150}
+              width={210}
+              height={210}
             />
           </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center">
+            Frequently Asked Questions
+          </h2>
         </div>
 
-        <Accordion type="single" collapsible className="space-y-2">
+        <div className="space-y-4">
           {faqData.map((item, index) => (
-            <AccordionItem
-              key={index}
-              value={item.title}
-              className="border border-gray-200 rounded-lg overflow-hidden bg-white mb-4"
+            <div 
+              key={index} 
+              className={`bg-white rounded-lg shadow-sm drop-shadow-md overflow-hidden transition-all duration-300 ${
+                openItem === item.title ? "border-t-4 border-t-yellow-400" : ""
+              }`}
             >
-              <CustomAccordionTrigger
-                className="px-6 font-medium text-base md:text-lg"
-                isOpen={openItems[item.title]}
-                onClick={() => toggleItem(item.title)}
+              <button
+                onClick={() => handleToggle(item.title)}
+                className="w-full flex justify-between items-center px-6 py-5 focus:outline-none"
               >
-                {item.title}
-              </CustomAccordionTrigger>
-              <AccordionContent className="text-gray-600 px-6 pb-5 text-sm md:text-base">
+                <span className="font-medium text-base md:text-lg text-left">
+                  {item.title}
+                </span>
+                {openItem === item.title ? (
+                  <FiChevronUp className="h-5 w-5 text-gray-700" />
+                ) : (
+                  <FiChevronDown className="h-5 w-5 text-gray-700" />
+                )}
+              </button>
+              
+              <div 
+                className={`px-6 pb-5 text-gray-600 text-sm md:text-base transition-all duration-300 ${
+                  openItem === item.title ? "block" : "hidden"
+                }`}
+              >
                 {item.content}
-              </AccordionContent>
-            </AccordionItem>
+              </div>
+            </div>
           ))}
-        </Accordion>
+        </div>
 
         <div className="mt-10 flex justify-center">
-          <button className="bg-yellow-400 hover:bg-yellow-500 px-6 py-3 rounded-full font-medium text-black flex items-center gap-2 shadow-md">
+          <Button variant="figma" size="lg" className="font-medium drop-shadow-lg">
             Find Your Career Choice
-            <span className="text-xs">→</span>
-          </button>
+            <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
+              <svg
+                width="15"
+                height="9"
+                viewBox="0 0 15 9"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
+                  fill="#2A2A2A"
+                />
+              </svg>
+            </div>
+          </Button>
         </div>
       </div>
     </div>

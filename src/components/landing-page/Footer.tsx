@@ -17,9 +17,9 @@ const Footer = () => {
               <Image
                 src={Logo}
                 alt="Decoding Me Logo"
-                width={36}
+                width={90}
                 height={36}
-                className="w-9 h-9"
+                className=""
               />
             </div>
             <h2 className="font-bold text-lg uppercase tracking-wide text-gray-900">
@@ -31,25 +31,25 @@ const Footer = () => {
           <div className="flex space-x-4">
             <Link
               href="https://youtube.com"
-              className="text-gray-500 hover:text-red-600"
+              className="text-red-600"
             >
               <FaYoutube className="w-6 h-6" />
             </Link>
             <Link
               href="https://instagram.com"
-              className="text-gray-500 hover:text-pink-600"
+              className="text-pink-600"
             >
               <FaInstagram className="w-6 h-6" />
             </Link>
             <Link
               href="https://linkedin.com"
-              className="text-gray-500 hover:text-blue-600"
+              className="text-blue-600"
             >
               <FaLinkedin className="w-6 h-6" />
             </Link>
             <Link
               href="https://facebook.com"
-              className="text-gray-500 hover:text-blue-800"
+              className="text-blue-800"
             >
               <FaFacebook className="w-6 h-6" />
             </Link>

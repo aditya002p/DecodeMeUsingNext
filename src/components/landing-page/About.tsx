@@ -22,7 +22,8 @@ const JourneyCard = ({ title, items, itemStyle = "red", bannerSvg }) => {
             <span
               className={`${
                 itemStyle === "red" ? "text-red-500" : "text-amber-400"
-              } mr-2 mt-1`}
+              } mr-2 mt-1 transform rotate-270`}
+              style={{ display: "inline-block", transform: "rotate(-90deg)" }}
             >
               {itemStyle === "red" ? "🔻" : "✨"}
             </span>
@@ -46,7 +47,7 @@ const About = () => {
       viewBox="0 0 281 31"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="absolute top-3 left-4 right-5"
+      className="absolute top-3 left-0 right-5"
     >
       <path
         d="M29.3353 0.300299C29.3353 0.300299 24.8335 0.00695103 21.9769 0.300299C12.852 1.23736 0.953125 10.1699 0.953125 10.1699L29.3353 10.1699V0.300299Z"
@@ -81,7 +82,7 @@ const About = () => {
       viewBox="0 0 281 31"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="absolute top-3 left-4 right-5"
+      className="absolute top-3 left-0 right-5"
     >
       <path
         d="M29.3353 0.300299C29.3353 0.300299 24.8335 0.00695103 21.9769 0.300299C12.852 1.23736 0.953125 10.1699 0.953125 10.1699L29.3353 10.1699V0.300299Z"
@@ -116,7 +117,7 @@ const About = () => {
       viewBox="0 0 281 31"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="absolute top-3 left-4 right-5"
+      className="absolute top-3 left-0 right-5"
     >
       <path
         d="M29.3353 0.300299C29.3353 0.300299 24.8335 0.00695103 21.9769 0.300299C12.852 1.23736 0.953125 10.1699 0.953125 10.1699L29.3353 10.1699V0.300299Z"
@@ -182,7 +183,7 @@ const About = () => {
     <div className="bg-[#FFFDF7] py-16 px-4">
       <div className="max-w-6xl mx-auto space-y-16">
         {/* Founder section */}
-        <div className="bg-white rounded-3xl p-8 md:p-12 relative flex flex-col md:flex-row items-center gap-8 drop-shadow-lg">
+        <div className="bg-white rounded-3xl p-8 md:p-12 relative flex flex-col md:flex-row items-center gap-8 drop-shadow-lg ">
           <div className="w-full md:w-3/5 space-y-8 z-10">
             <div>
               <p className="text-gray-700 font-medium uppercase text-sm tracking-wide">
@@ -247,19 +248,17 @@ const About = () => {
             </svg>
           </div>
 
-          {/* Image container with absolute positioning for large screens */}
-          <div className="w-full md:w-2/5">
-            <div className="absolute md:right-[-90px] md:top-0 md:bottom-0 md:w-2/5 lg:w-1/2 xl:w-2/5">
-              <div className="relative h-full w-full">
-                <Image
-                  src={aboutAuthor}
-                  alt="Khushbu Chopda"
-                  className="rounded-lg md:rounded-r-3xl md:rounded-l-none object-cover h-full block"
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="center"
-                />
-              </div>
+          {/* Image container - responsive for all screen sizes */}
+          <div className="w-full lg:w-2/5 relative">
+            <div className="w-full h-[300px] lg:absolute lg:top-[-60px] lg:left-20">
+              <Image
+                src={aboutAuthor}
+                alt="Khushbu Chopda"
+                className="rounded-lg md:rounded-r-3xl md:rounded-l-none object-cover"
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+              />
             </div>
           </div>
         </div>
@@ -274,7 +273,7 @@ const About = () => {
             school—India's economy would be unstoppable!
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[360px] drop-shadow-xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[360px] drop-shadow-2xl">
             {/* Render cards using the JourneyCard component */}
             {cardsData.map((card, index) => (
               <JourneyCard
@@ -290,13 +289,24 @@ const About = () => {
           {/* Explore More Button */}
           <div className="flex justify-center mt-12 relative">
             <Button
-              variant="fill"
+              variant="figma"
               size="lg"
-              className="relative bg-enquire-gradient text-black font-medium rounded-full shadow-lg border border-[#FFFFFF1A] before:absolute before:inset-[-2px] before:rounded-full before:border before:border-[#FFFFFF33] before:-z-10"
+              className="font-medium drop-shadow-lg"
             >
               Explore More Careers
-              <div className="ml-2 bg-white rounded-lg w-5 h-4 px-[2px] py-[2px]">
-                <ArrowRightIcon className="" />
+              <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
+                <svg
+                  width="15"
+                  height="9"
+                  viewBox="0 0 15 9"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                > 
+                  <path
+                    d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
+                    fill="#2A2A2A"
+                  />
+                </svg>
               </div>
             </Button>
           </div>

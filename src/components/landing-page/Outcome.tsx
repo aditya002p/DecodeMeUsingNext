@@ -1,101 +1,106 @@
-import React from "react";
 import Image from "next/image";
-import { cn } from "@/utils/utils";
-import factory from "../../../public/factory.svg";
-import person from "../../../public/person.svg";
+import React from "react";
 import logo from "../../../public/logo.svg";
-// Feature item component
+
 const FeatureItem = ({ icon, title, description, className }) => (
-  <div className={cn("flex items-center gap-4 mb-6", className)}>
-    <div className="bg-yellow-300 rounded-full p-4 flex items-center justify-center w-16 h-16 shrink-0">
-      <Image src={icon} alt={title} width={28} height={28} />
+  <div className={`flex items-center ${className}`}>
+    <div className="bg-yellow-300 rounded-full p-4 flex items-center justify-center w-28 h-28 shrink-0 relative" 
+         style={{ boxShadow: "14px 2px 4px 0px #FDFFA9" }}>
+      <span className="text-6xl">{icon}</span>
     </div>
-    <div className="max-w-md">
-      <h3 className="text-sm font-semibold mb-1">{title}</h3>
-      <p className="text-sm text-gray-600">{description}</p>
+    <div className="bg-white rounded-3xl py-3 px-5 shadow-sm ml-4 lg:w-full relative " 
+         style={{ borderTopLeftRadius: "-100px",borderBottomLeftRadius:"-50%", clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 15%, 15% 0)" }}>
+      <h3 className="text-base font-semibold mb-1">{title} {" "}
+        <span className="font-normal">{description}</span>
+      </h3>
     </div>
-  </div>
+    </div>
 );
 
 const Outcome = () => {
-  // Mock data for features (replace with actual data and icons)
-  const features = [
-    {
-      icon: "🎯",
-      title: "Your Personal Career Dashboard:",
-      description: "Track your career exploration journey like a boss.",
-    },
-    {
-      icon: "🔬",
-      title: "Hands-On Exploration:",
-      description:
-        "Explore real-world work done in all occupations before committing to any!",
-    },
-    {
-      icon: "🎧",
-      title: "Curated Content Library:",
-      description:
-        "Podcasts, movies, books, TV Shows, YouTube channels- all the inspo you need.",
-    },
-    {
-      icon: factory,
-      title: "Industry-Relevant Projects:",
-      description: "Get real-world experience, not just theory.",
-    },
-    {
-      icon: person,
-      title: "Industry Expert Interaction:",
-      description:
-        "Talk to cool people already working in the occupation of your choice!",
-    },
-    {
-      icon: "💬",
-      title: "Unlimited DM Sessions:",
-      description: "Because we're here for you 24/7.",
-    },
-    {
-      icon: "🌍",
-      title: "National Youth Exposure:",
-      description: "Connect with students across India. Diversity, baby!",
-    },
-  ];
-
   return (
-    <div className="py-20 px-4 bg-yellow-50">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-5xl font-bold text-gray-200 text-center mb-16">
+    <div className="py-20 px-4 bg-[#FFFFF4] relative">
+      <div className="max-w-full mx-auto">
+        <h2 className="text-[72px] font-bold text-center mb-16 py-4 px-6"
+            style={{ 
+              background: "linear-gradient(180deg, rgba(51, 51, 51, 0.3) 0%, rgba(51, 51, 51, 0) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>
           OUTCOME OF DECODING ME
         </h2>
 
-        <div className="flex flex-col md:flex-row">
-          {/* Left side - Logo */}
-          <div className="flex items-center justify-center md:w-1/3 mb-12 md:mb-0">
-            <div className="w-48">
-              <Image
-                src={logo}
-                alt="Decoding Me Logo"
-                width={240}
-                height={240}
-                className="w-full h-auto"
-              />
+        <div className="grid grid-cols-0 gap-4 drop-shadow-lg">
+          {/* Logo positioned in the left center */}
+          <div className="col-span-4 col-start-1 row-span-5 row-start-2 flex items-center justify-center">
+            <div className="relative">
+              <Image src={logo} alt="Decoding Me Logo" width={350} height={220} />
+              <div className="absolute inset-0 blur-md opacity-30 rounded-full" style={{ filter: "blur(15px)" }}></div>
             </div>
           </div>
 
-          {/* Right side - Features */}
-          <div className="md:w-2/3">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {features.map((feature, index) => (
-                <FeatureItem
-                  key={index}
-                  icon={feature.icon}
-                  title={feature.title}
-                  description={feature.description}
-                  className={
-                    index === features.length - 1 ? "md:col-span-2" : ""
-                  }
-                />
-              ))}
-            </div>
+          {/* Feature 1 - Top horizontal line with logo */}
+          <div className="col-span-5 col-start-4 row-start-1">
+            <FeatureItem
+              icon="🎯"
+              title="Your Personal Career Dashboard:"
+              description="Track your career exploration journey like a boss."
+            />
+          </div>
+
+          {/* Feature 2 - Below Feature 1, with spacing from left */}
+          <div className="col-span-5 col-start-5 row-start-2 mt-2">
+            <FeatureItem
+              icon="🔬"
+              title="Hands-On Exploration:"
+              description="Explore real-world work done in all occupations before committing to any!"
+            />
+          </div>
+
+          {/* Feature 3 - Below Feature 2 */}
+          <div className="col-span-5 col-start-6 row-start-3 mt-2">
+            <FeatureItem
+              icon="🎧"
+              title="Curated Content Library:"
+              description="Podcasts, movies, books, TV Shows, YouTube channels- all the inspo you need."
+            />
+          </div>
+
+          {/* Feature 4 - Same horizontal line as Feature 3 but below */}
+          <div className="col-span-5 col-start-8 row-start-4 mt-2">
+            <FeatureItem
+              icon="🏭"
+              title="Industry-Relevant Projects:"
+              description="Get real-world experience, not just theory."
+            />
+          </div>
+
+          {/* Feature 5 - Below Feature 4, shrinking space */}
+          <div className="col-span-5 col-start-6 row-start-5 mt-8">
+            <FeatureItem
+              icon="👔"
+              title="Industry Expert Interaction:"
+              description="Talk to cool people already working in the occupation of your choice!"
+            />
+          </div>
+
+          {/* Feature 6 - Below Feature 5, shrinking space */}
+          <div className="col-span-5 col-start-5 row-start-6 mt-8">
+            <FeatureItem
+              icon="💬"
+              title="Unlimited DM Sessions:"
+              description="Because we're here for you 24/7."
+            />
+          </div>
+
+          {/* Feature 7 - Below Feature 6, shrinking space */}
+          <div className="col-span-5 col-start-4 row-start-7 mt-8">
+            <FeatureItem
+              icon="🌍"
+              title="National Youth Exposure:"
+              description="Connect with students across India. Diversity, baby!"
+            />
           </div>
         </div>
       </div>
