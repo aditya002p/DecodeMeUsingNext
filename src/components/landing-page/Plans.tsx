@@ -82,11 +82,3 @@ const Plans = ({ className }) => {
 };
 
 export default Plans;
-
-// /* Group 2085662557 */
-
-// position: absolute;
-// width: 290px;
-// height: 58px;
-// left: calc(50% - 290px/2 + 3px);
-// top: 11795.17px;

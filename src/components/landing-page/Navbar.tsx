@@ -37,14 +37,12 @@ const NavLink = ({ href, children, className }) => (
 const EnquireButton = () => (
   <Link href="/enquire">
     <Button
-      variant="fill"
-      size="sm"
-      className="relative bg-enquire-gradient text-black font-medium rounded-full shadow-lg border border-[#FFFFFF1A] before:absolute before:inset-[-2px] before:rounded-full before:border before:border-[#FFFFFF33] before:-z-10"
+      variant="figma"
+      size="figma"
+      showArrow={true}
+      className="relative text-black font-medium"
     >
       Enquire Now
-      <div className="ml-2 bg-white rounded-lg w-5 h-4 px-[2px] py-[2px]">
-        <ArrowRightIcon className="" />
-      </div>
     </Button>
   </Link>
 );
