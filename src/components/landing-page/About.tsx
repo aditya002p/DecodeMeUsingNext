@@ -6,6 +6,7 @@ import Button from "./Button";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import aboutAuthor from "../../../public/About.svg";
 import ArrowDown from "../../../public/Arrow2.png";
+import Link from "next/link";
 
 // Reusable Card Component with custom SVG banners
 const JourneyCard = ({ items, itemStyle = "red", bannerSvg }) => {
@@ -287,6 +288,7 @@ const About = () => {
           </div>
 
           {/* Explore More Button */}
+          <Link href="/enquire">
           <div className="flex justify-center mt-12 relative">
             <Button
               variant="figma"
@@ -310,6 +312,7 @@ const About = () => {
               </div>
             </Button>
           </div>
+          </Link>
         </div>
       </div>
       <div

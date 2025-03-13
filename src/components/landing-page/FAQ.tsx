@@ -11,6 +11,7 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Image from "next/image";
 import cartton from "../../../public/cartoon3.png";
 import Button from "./Button";
+import Link from "next/link";
 
 interface FAQItem {
   title: string;
@@ -101,7 +102,7 @@ const FAQ: React.FC = () => {
             </div>
           ))}
         </div>
-
+        <Link href="/enquire">
         <div className="mt-10 flex justify-center">
           <Button variant="figma" size="lg" className="font-medium drop-shadow-lg">
             Find Your Career Choice
@@ -121,6 +122,7 @@ const FAQ: React.FC = () => {
             </div>
           </Button>
         </div>
+        </Link>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Button from "./Button";
 import notes from "../../../public/notes.png";
 import did from "../../../public/DidYouKnow.png";
 import ArrowDown from "../../../public/ArrowDown.png";
+import Link from "next/link";
 
 interface DidYouKnowProps {
   title?: string;
@@ -50,7 +51,7 @@ const DidYouKnow: React.FC<DidYouKnowProps> = ({
             <p className="text-sm md:text-base mb-8 opacity-60 text-white leading-relaxed">
               {content}
             </p>
-            <a href={buttonUrl}>
+            <Link href="/enquire">
               <Button
                 variant="figma"
                 size="lg"
@@ -72,7 +73,7 @@ const DidYouKnow: React.FC<DidYouKnowProps> = ({
                   </svg>
                 </div>
               </Button>
-            </a>
+            </Link>
           </div>
           <div className="md:w-1/2 flex justify-center md:justify-end"></div>
         </div>

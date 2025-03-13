@@ -3,6 +3,7 @@ import cartoon from "../../../public/cartoon8.png";
 import Image from "next/image";
 import dots from "../../../public/Dots.svg";
 import Button from "./Button";
+import Link from "next/link";
 
 const ComparisonTable = () => {
   const comparisonData = [
@@ -186,6 +187,7 @@ const ComparisonTable = () => {
         </div>
 
         {/* CTA Button */}
+        <Link href="/enquire">
         <div className="flex justify-center mt-10">
           <Button
             variant="figma"
@@ -209,6 +211,7 @@ const ComparisonTable = () => {
             </div>
           </Button>
         </div>
+        </Link>
       </div>
     </div>
   );

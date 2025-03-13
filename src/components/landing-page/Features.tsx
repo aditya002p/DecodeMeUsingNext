@@ -11,6 +11,7 @@ import jobVanish from "../../../public/job-vanish.svg";
 import commerceImg from "../../../public/commerce.svg";
 // Assuming you have this SVG in your assets folder
 import backgroundSvg from "../../../public/FeaturesBg.svg";
+import Link from "next/link";
 
 interface FeatureItem {
   id: string;
@@ -316,6 +317,7 @@ const Features = () => {
                       <p className="text-gray-600 mb-6 text-start lg:w-[400px] text-sm leading-6">
                         {feature.description}
                       </p>
+                      <Link href="/enquire">
                       <Button
                         variant="figma"
                         size="lg"
@@ -337,6 +339,7 @@ const Features = () => {
                           </svg>
                         </div>
                       </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>
