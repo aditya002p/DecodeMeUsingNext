@@ -3,7 +3,7 @@
 import { useState, useEffect, SetStateAction } from "react";
 import Image from "next/image";
 import Button from "./Button";
-import { useModal } from "../../app/context/ModalContext"; // Import the modal hook
+import { useModal } from "../../app/context/ModalContext";
 import Hero1 from "../../../public/Hero1.svg";
 import Hero2 from "../../../public/Hero2.svg";
 import Hero3 from "../../../public/Hero3.svg";
@@ -19,7 +19,7 @@ const carouselData = [
       "Why should choosing a career be boring or stressful? Our career exploration portal has made it fun, simple & embarrassingly easy.",
     buttonText: "Explore Careers Today",
     buttonLink: "#explore",
-    imageSrc: Hero3, // Path to your first carousel image
+    imageSrc: Hero3,
     ribbon: "India's 1st Career Exploration Platform",
   },
   {
@@ -29,7 +29,7 @@ const carouselData = [
       "Experience the real-world work done in the career of your choice and cross check your love for your beloved career!",
     buttonText: "Test Your Career Choice",
     buttonLink: "#test",
-    imageSrc: Hero1, // Path to your second carousel image
+    imageSrc: Hero1,
     ribbon: "India's 1st Career Exploration Platform",
   },
   {
@@ -39,16 +39,15 @@ const carouselData = [
       "Not sure what to choose or where to start from? Start exploring ALL careers via our career exploration portal & find your career type.",
     buttonText: "Find Your Career Type",
     buttonLink: "#find",
-    imageSrc: Hero2, // Path to your third carousel image
+    imageSrc: Hero2,
     ribbon: "India's 1st Career Exploration Platform",
   },
-  // Add more items as needed in the future
 ];
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animating, setAnimating] = useState(false);
-  const { openEnquiryModal } = useModal(); // Use the modal context hook
+  const { openEnquiryModal } = useModal();
 
   // Auto-advance carousel with smooth transition
   useEffect(() => {
@@ -59,10 +58,10 @@ export default function Hero() {
           setCurrentSlide((prev) => (prev + 1) % carouselData.length);
           setTimeout(() => {
             setAnimating(false);
-          }, 500); // Time to complete fade-in animation
-        }, 500); // Time to complete fade-out animation
+          }, 500);
+        }, 500);
       }
-    }, 7000); // Longer interval for better readability
+    }, 7000);
 
     return () => clearInterval(interval);
   }, [animating]);
@@ -85,13 +84,13 @@ export default function Hero() {
   return (
     <div className="max-w-7xl rounded-[30px] mx-auto px-4 sm:px-6 relative pt-12 shadow-hero-shadow bg-background-hero h-full lg:max-h-screen">
       <div className="flex flex-col lg:flex-row items-center gap-8 bg-border-image-source shadow-hero-shadow rounded-2xl overflow-hidden h-full lg:max-h-[724px] relative">
-        {/* Content section first on all screens */}
+        {/* Content section - always first on small screens */}
         <div
-          className={`w-full h-full lg:w-1/2 px-6 sm:px-8 lg:px-12 pt-8 lg:pt-16 pb-8 order-2 lg:order-1 relative transition-opacity duration-500 ${
+          className={`w-full h-full lg:w-1/2 px-6 sm:px-8 lg:px-12 pt-8 lg:pt-16 pb-8 order-1 lg:order-1 relative transition-opacity duration-500 ${
             animating ? "opacity-0" : "opacity-100"
           }`}
         >
-          {/* Ribbon - Attached to left of content div on small screens, and to parent div on large screens */}
+          {/* Ribbon - Updated with right padding */}
           <div className="lg:hidden absolute top-0 left-0 z-10">
             <div
               className="bg-ribbon text-white text-xs sm:text-sm py-1 px-3 sm:py-2 sm:px-4 font-medium leading-6"
@@ -101,13 +100,14 @@ export default function Hero() {
                 fontFamily: "Poppins, sans-serif",
                 maxWidth: "100%",
                 width: "fit-content",
+                paddingRight: "1.5rem", // Added right padding
               }}
             >
               {currentItem.ribbon}
             </div>
           </div>
 
-          {/* Rating and stats - Row format on all screens */}
+          {/* Rating and stats */}
           <div className="mb-6 mt-6 lg:mt-0">
             <div className="flex items-center gap-3 sm:gap-4">
               <div className="flex-shrink-0 w-14 sm:w-16 lg:w-auto">
@@ -138,7 +138,6 @@ export default function Hero() {
             {currentItem.description}
           </p>
 
-          {/* Modified to use the openEnquiryModal function instead of Link */}
           <Button 
             variant="figma" 
             size="lg" 
@@ -163,20 +162,21 @@ export default function Hero() {
           </Button>
         </div>
 
-        {/* Image second on all screens, right side on large screens */}
+        {/* Image section - always second on small screens */}
         <div
-          className={`w-full lg:w-1/2 order-1 lg:order-2 relative transition-opacity duration-500 ${
+          className={`w-full lg:w-1/2 order-2 lg:order-2 relative transition-opacity duration-500 ${
             animating ? "opacity-0" : "opacity-100"
           }`}
         >
-          {/* Ribbon - Only on large screens, attached to top left of parent div */}
-          <div className="hidden lg:block absolute top-0 left-0 z-10 translate-x-[-233%]">
+          {/* Ribbon - Only on large screens, with added right padding */}
+          <div className="hidden lg:block absolute top-0 left-0 z-10 translate-x-[-225%]">
             <div
               className="bg-ribbon text-white text-sm py-2 px-4 font-medium leading-6"
               style={{
                 clipPath:
                   "polygon(0% 0%, 100% 0%, 93% 50%, 100% 100%, 0% 100%)",
                 fontFamily: "Poppins, sans-serif",
+                paddingRight: "1.5rem", // Added right padding
               }}
             >
               {currentItem.ribbon}
@@ -193,7 +193,7 @@ export default function Hero() {
             />
           </div>
 
-          {/* Carousel indicators - Bottom center on all screens */}
+          {/* Carousel indicators */}
           <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
             <div className="flex justify-center gap-2 py-2 px-4 rounded-full">
               {carouselData.map((_, index) => (

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Button from "./Button";
 import student from "../../../public/student.svg";
@@ -9,7 +8,6 @@ import engineer from "../../../public/engineer.svg";
 import wrongCareer from "../../../public/wrong-career.svg";
 import jobVanish from "../../../public/job-vanish.svg";
 import commerceImg from "../../../public/commerce.svg";
-// Assuming you have this SVG in your assets folder
 import backgroundSvg from "../../../public/FeaturesBg.svg";
 import Link from "next/link";
 
@@ -109,7 +107,7 @@ const Features = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isMobile = window.innerWidth < 768;
+      const isMobile = window.innerWidth < 1024; // Changed from 768 to 1024 for lg breakpoint
 
       // For mobile devices, activate all features at once and no timeline
       if (isMobile) {
@@ -227,9 +225,9 @@ const Features = () => {
         </div>
 
         <div className="relative">
-          {/* Timeline container - visible only on md screens and up */}
+          {/* Timeline container - visible only on lg screens and up */}
           <div
-            className="absolute left-1/2 transform -translate-x-1/2 h-full hidden lg:block md:block "
+            className="absolute left-1/2 transform -translate-x-1/2 h-full hidden lg:block"
             style={{ width: "8px" }}
           >
             {/* Main timeline line */}
@@ -276,69 +274,68 @@ const Features = () => {
           </div>
 
           {/* Features */}
-          <div className="space-y-32 md:space-y-64">
+          <div className="space-y-32 lg:space-y-64">
             {featureItems.map((feature, index) => (
               <div
                 key={feature.id}
                 ref={(el) => (featureRefs.current[feature.id] = el)}
-                className={`relative flex flex-col ${
+                className={`relative flex flex-col items-center text-center ${
                   feature.position === "left"
-                    ? "md:flex-row"
-                    : "md:flex-row-reverse"
-                } items-center ${
+                    ? "lg:flex-row lg:text-left"
+                    : "lg:flex-row-reverse lg:text-right"
+                } ${
                   activeFeatures[feature.id] ? "opacity-100" : "opacity-70"
                 } transition-opacity duration-500`}
               >
-                {/* Content based on position */}
+                {/* Content section */}
                 <div
-                  className={`w-full md:w-1/2 ${
+                  className={`w-full lg:w-1/2 ${
                     feature.position === "left"
-                      ? "md:pr-16 md:text-right"
-                      : "md:pl-16 md:text-left"
-                  } mb-8 md:mb-0`}
+                      ? "lg:pr-16"
+                      : "lg:pl-16"
+                  } mb-8 lg:mb-0 flex flex-col items-center lg:items-start`}
                 >
                   <div
                     className={`${
                       feature.position === "left"
-                        ? "md:mr-0 md:ml-auto"
-                        : "md:ml-0 md:mr-auto"
+                        ? "lg:mr-0 lg:ml-auto"
+                        : "lg:ml-0 lg:mr-auto"
                     } max-w-md relative`}
                   >
                     {/* Number positioned at top of content */}
-                    <div className="text-7xl md:text-8xl font-bold bg-custom-gradient bg-clip-text text-transparent mb-2 absolute -top-20 md:block hidden">
+                    <div className="text-7xl lg:text-8xl font-bold bg-custom-gradient bg-clip-text text-transparent mb-2 lg:absolute lg:-top-20 block mx-auto lg:mx-0">
                       {feature.number}
                     </div>
 
                     {/* Title and content overlay */}
-                    <div className="-mt-12 md:-mt-16 relative z-10 items-start">
-                      <h3 className="text-2xl font-bold mb-2 lg:w-[370px] text-start">
+                    <div className="-mt-6 lg:-mt-16 relative z-10 flex flex-col items-center lg:items-start">
+                      <h3 className="text-2xl font-bold mb-2 lg:w-[370px] text-center lg:text-start">
                         {feature.title} <span>{feature.emoji}</span>
                       </h3>
-                      <p className="text-gray-600 mb-6 text-start lg:w-[400px] text-sm leading-6">
+                      <p className="text-gray-600 mb-6 text-center lg:text-start lg:w-[400px] text-sm leading-6">
                         {feature.description}
                       </p>
                       <Link href="/enquire">
-                      <Button
-                        variant="figma"
-                        size="lg"
-                        className="font-medium drop-shadow-lg"
-                      >
-                        {feature.buttonText}
-                        <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
-                          <svg
-                            width="15"
-                            height="9"
-                            viewBox="0 0 15 9"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
+                        <Button
+                          variant="figma"
+                          size="lg"
+                          className="font-medium drop-shadow-lg"
+                        >
+                          {feature.buttonText}
+                          <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
+                            <svg
+                              width="15"
+                              height="9"
+                              viewBox="0 0 15 9"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
                               d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
-                              fill="#2A2A2A"
-                            />
-                          </svg>
-                        </div>
-                      </Button>
+                                fill="#2A2A2A"
+                              />
+                            </svg>
+                          </div>
+                        </Button>
                       </Link>
                     </div>
                   </div>
@@ -346,33 +343,30 @@ const Features = () => {
 
                 {/* Image section with SVG background */}
                 <div
-                  className={`w-full md:w-1/2 ${
-                    feature.position === "left" ? "md:pl-16" : "md:pr-16"
-                  }`}
+                  className={`w-full lg:w-1/2 ${
+                    feature.position === "left" ? "lg:pl-16" : "lg:pr-16"
+                  } flex justify-center lg:justify-start`}
                 >
                   <div
                     className={`${
                       feature.position === "left"
-                        ? "md:ml-0 md:mr-auto"
-                        : "md:mr-0 md:ml-auto"
+                        ? "lg:ml-0 lg:mr-auto"
+                        : "lg:mr-0 lg:ml-auto"
                     } max-w-md relative`}
                   >
-                    {/* SVG Background Pattern */}
-                    <div className="absolute inset-0 -z-10 transform scale-125 opacity-30">
+                    {/* SVG Background Pattern - Enhanced visibility */}
+                    <div className="absolute inset-0 -z-10 transform scale-125">
                       <Image
                         src={backgroundSvg}
                         alt="Background pattern"
                         layout="fill"
                         objectFit="cover"
+                        className="opacity-50" // Increased from 30% to 50% for better visibility
                       />
                     </div>
 
-                    {/* Feature Image */}
-                    <div
-                      className={`
-                      rounded-lg overflow-hidden transform transition-all duration-500
-                    `}
-                    >
+                    {/* Feature Image - Improved size and positioning */}
+                    <div className="rounded-lg overflow-hidden transform transition-all duration-500 relative">
                       <Image
                         src={feature.image}
                         alt={feature.imageAlt}

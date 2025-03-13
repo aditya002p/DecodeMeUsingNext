@@ -14,7 +14,7 @@ import { HiBars3 } from "react-icons/hi2";
 import { cn } from "@/utils/utils";
 import logo from "../../../public/logo.svg";
 import Button from "./Button";
-import { useModal } from "../../app/context/ModalContext"; 
+import { useModal } from "../../app/context/ModalContext";
 
 const NavItems = [
   { label: "Why we exist?", url: "#why-we-exist" },
@@ -39,7 +39,6 @@ const NavLink = ({ href, children, className }) => (
 );
 
 const EnquireButton = () => {
-  // Move the useModal hook inside the component
   const { openEnquiryModal } = useModal();
   
   return (
@@ -64,7 +63,7 @@ const EnquireButton = () => {
 };
 
 const DesktopNavigation = () => (
-  <div className="hidden md:hidden lg:flex items-center space-x-8 text-sm font-[300px]">
+  <div className="hidden md:hidden lg:flex items-center space-x-6 text-sm">
     {NavItems.map((item) => (
       <NavLink key={item.label} href={item.url}>
         {item.label}
@@ -98,8 +97,8 @@ const MobileNavigation = () => (
 );
 
 const Navbar = () => (
-  <nav className="bg-white border-b border-gray-100 sticky top-0 z-50">
-    <div className="max-w-7xl mx-auto px-6 lg:px-8">
+  <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 w-full">
+    <div className="max-w-7xl mx-auto px-4 lg:px-6">
       <div className="flex justify-between items-center h-20">
         {/* Logo */}
         <div className="flex items-center">
