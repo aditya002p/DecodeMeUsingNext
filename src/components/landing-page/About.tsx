@@ -251,7 +251,7 @@ const About = () => {
 
           {/* Image container - responsive for all screen sizes */}
           <div className="w-full lg:w-2/5 relative">
-            <div className="w-full h-[300px] lg:absolute lg:top-[-60px] lg:left-20">
+            <div className="w-full h-[300px] lg:absolute lg:top-[-87px] lg:left-20">
               <Image
                 src={aboutAuthor}
                 alt="Khushbu Chopda"

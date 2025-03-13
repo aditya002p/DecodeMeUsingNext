@@ -2,7 +2,8 @@ import Image from "next/image";
 import React from "react";
 import logo from "../../../public/logo.svg";
 import factory from "../../../public/factory.svg";
-import person from "../../../public/person.svg"
+import person from "../../../public/person.svg";
+
 const FeatureItem = ({ icon, title, description, className }) => {
   // Check if icon is a string (emoji) or an image component
   const isImageIcon = typeof icon !== 'string';
@@ -32,8 +33,9 @@ const FeatureItem = ({ icon, title, description, className }) => {
 
 const Outcome = () => {
   return (
-    <div className="py-10 md:py-20 px-4 bg-[#FFFFF4] relative">
-      <div className="max-w-7xl mx-auto">
+    <div className="py-10 md:py-20 bg-[#FFFFF4] relative">
+      {/* Removed px-4 from the container to fix horizontal spacing on small screens */}
+      <div className="max-w-7xl mx-auto px-2 sm:px-4">
         <h2 className="text-3xl md:text-5xl lg:text-[72px] font-bold text-center mb-8 md:mb-16 py-2 md:py-4 px-2 md:px-6"
             style={{ 
               background: "linear-gradient(180deg, rgba(51, 51, 51, 0.3) 0%, rgba(51, 51, 51, 0) 100%)",
@@ -128,6 +130,7 @@ const Outcome = () => {
 
         {/* Mobile Layout - Vertical stack of feature items */}
         <div className="flex flex-col space-y-4 md:hidden">
+          {/* Removed unnecessary outer padding that was causing extra horizontal spacing */}
           <FeatureItem
             icon="🎯"
             title="Your Personal Career Dashboard:"
@@ -149,7 +152,7 @@ const Outcome = () => {
             description="Get real-world experience, not just theory."
           />
           <FeatureItem
-            icon={<Image src={person} alt="person Icon" width={100} height={100} />}
+            icon={<Image src={person} alt="person Icon" width={60} height={60} />}
             title="Industry Expert Interaction:"
             description="Talk to cool people already working in the occupation of your choice!"
           />

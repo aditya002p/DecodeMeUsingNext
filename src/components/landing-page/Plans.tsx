@@ -4,22 +4,23 @@ import { cn } from "@/utils/utils";
 import vision from "../../../public/vision-eye.svg";
 import mission from "../../../public/mission-target.svg";
 import Arrow1 from "../../../public/Arrow.png";
+
 const PlanCard = ({ title, description, icon, alt }) => (
   <div className="relative w-full mx-auto max-w-xl">
     {/* White base card */}
-    <div className="bg-white  rounded-3xl overflow-hidden drop-shadow-2xl border border-gray-100 pt-32 pb-8 px-8 w-full mx-auto h-full lg:w-fit lg:h-[480px]">
+    <div className="bg-white rounded-3xl drop-shadow-2xl border border-gray-100 pt-16 pb-8 px-8 w-full mx-auto lg:w-fit lg:h-[480px]">
       {/* Content section */}
-      <div className="text-center mt-16 md:mt-32 mx-auto">
+      <div className="text-center mt-40 md:mt-48 mx-auto">
         <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-5 uppercase">
           {title}
         </h3>
-        <p className="text-gray-700 text-base md:text-lg leading-relaxed ">
+        <p className="text-gray-700 text-base md:text-lg leading-relaxed">
           {description}
         </p>
       </div>
     </div>
 
-    {/* Yellow card positioned on top with overflow */}
+    {/* Yellow card positioned on top */}
     <div className="absolute -top-10 lg:left-[50%] left-1/2 transform -translate-x-1/2 w-full lg:w-fit mx-auto drop-shadow-md">
       <div
         className="bg-yellow-300 rounded-3xl w-full lg:w-[480px] h-64 md:h-[355px]"
@@ -70,14 +71,14 @@ const Plans = ({ className }) => {
         </div>
       </div>
       {/* Arrow decoration - large screens only */}
-      <div
-        className="relative w-full pointer-events-none hidden lg:block lg:ml-20"
-        style={{ top: "0px", textAlign: "left" }}
-      >
-        <div style={{ position: "absolute" }}>
-          <Image src={Arrow1} alt="Arrow" width={293} height={300} />
-        </div>
-      </div>
+            <div
+              className="relative w-full pointer-events-none hidden lg:block"
+              style={{ top: "0px", paddingLeft: "4rem", textAlign: "left" }}
+            >
+              <div style={{ position: "absolute" }}>
+                <Image src={Arrow1} alt="Arrow" width={293} height={300} />
+              </div>
+            </div>
     </section>
   );
 };
