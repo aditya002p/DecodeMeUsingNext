@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +14,8 @@ import { HiBars3 } from "react-icons/hi2";
 import { cn } from "@/utils/utils";
 import logo from "../../../public/logo.svg";
 import Button from "./Button";
+import { useModal } from "../../app/context/ModalContext"; 
+
 const NavItems = [
   { label: "Why we exist?", url: "#why-we-exist" },
   { label: "Vision & Mission", url: "#vision-mission" },
@@ -34,9 +38,12 @@ const NavLink = ({ href, children, className }) => (
   </Link>
 );
 
-const EnquireButton = () => (
-  <Link href="/enquire">
-    <Button variant="figma" size="sm" className="font-medium drop-shadow-lg ">
+const EnquireButton = () => {
+  // Move the useModal hook inside the component
+  const { openEnquiryModal } = useModal();
+  
+  return (
+    <Button variant="figma" size="sm" className="font-medium drop-shadow-lg" onClick={openEnquiryModal}>
       Enquire Now
       <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
         <svg
@@ -53,8 +60,8 @@ const EnquireButton = () => (
         </svg>
       </div>
     </Button>
-  </Link>
-);
+  );
+};
 
 const DesktopNavigation = () => (
   <div className="hidden md:hidden lg:flex items-center space-x-8 text-sm font-[300px]">

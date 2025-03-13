@@ -64,7 +64,7 @@ const EnquiryPage: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+    <div className="flex items-center justify-center max-h-fit bg-gray-50">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6 relative">
         {/* Back button */}
         <Link href="/" className="absolute left-6 top-6">

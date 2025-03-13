@@ -30,7 +30,7 @@ export async function POST(req: Request): Promise<Response> {
   
         const sheets = google.sheets({ version: 'v4', auth });
         const spreadsheetId = '1L2dPY0ZZjhRz1xfUIVqZpFzNQ2eZL8Ws74Ul5nL1dDo'; 
-        const range = 'Sheet1!A:D';
+        const range = 'Form_Submission_Data!A:D';
   
         const response = await sheets.spreadsheets.values.append({
           spreadsheetId,
@@ -57,7 +57,7 @@ export async function POST(req: Request): Promise<Response> {
           },
         });
   
-        const recipients: string[] = ['admin1@example.com', 'admin2@example.com'];
+        const recipients: string[] = ['adityapathak902@gmail.com'];
         const mailOptions = {
           from: process.env.EMAIL_USER,
           to: recipients.join(', '),
