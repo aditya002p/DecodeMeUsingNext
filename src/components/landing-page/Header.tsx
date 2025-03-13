@@ -12,7 +12,7 @@ const Header = () => {
             Did You Know? 80% of graduates regret their career choice?
           </span>
           <Link
-            href="#data-source"
+            href="/enquire"
             className="text-[#E2D254] hover:underline flex items-center underline"
           >
             Check Data Source
