@@ -10,9 +10,9 @@ const Footer = () => {
     <footer className="bg-[#fffcf4] py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Top section with logo and social icons */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
           {/* Logo on the left */}
-          <div className="flex items-center mb-4 md:mb-0">
+          <div className="flex items-center mb-4 sm:mb-0">
             <div className="mr-2">
               <Image
                 src={Logo}
@@ -32,24 +32,28 @@ const Footer = () => {
             <Link
               href="https://youtube.com"
               className="text-red-600"
+              aria-label="YouTube"
             >
               <FaYoutube className="w-6 h-6" />
             </Link>
             <Link
               href="https://instagram.com"
               className="text-pink-600"
+              aria-label="Instagram"
             >
               <FaInstagram className="w-6 h-6" />
             </Link>
             <Link
               href="https://linkedin.com"
               className="text-blue-600"
+              aria-label="LinkedIn"
             >
               <FaLinkedin className="w-6 h-6" />
             </Link>
             <Link
               href="https://facebook.com"
               className="text-blue-800"
+              aria-label="Facebook"
             >
               <FaFacebook className="w-6 h-6" />
             </Link>
@@ -57,30 +61,32 @@ const Footer = () => {
         </div>
 
         {/* Bottom section with links and copyright */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-4 border-t border-gray-200">
-          {/* Policy links */}
-          <div className="flex flex-wrap gap-x-4 mb-4 md:mb-0 text-sm text-gray-600">
-            <Link href="/privacy-policy" className="hover:text-gray-900">
-              Privacy policy
-            </Link>
-            <span>|</span>
-            <Link href="/terms" className="hover:text-gray-900">
-              Terms and conditions
-            </Link>
-            <span>|</span>
-            <Link href="/disclaimer" className="hover:text-gray-900">
-              Disclaimer
-            </Link>
-            <span>|</span>
-            <Link href="/refund-policy" className="hover:text-gray-900">
-              Refund policy
-            </Link>
-          </div>
+        <div className="border-t border-gray-200 pt-4">
+          <div className="flex flex-col sm:flex-row justify-between">
+            {/* Policy links */}
+            <div className="flex flex-wrap gap-y-2 gap-x-2 sm:gap-x-4 mb-4 sm:mb-0 text-sm text-gray-600 justify-center sm:justify-start">
+              <Link href="/privacy-policy" className="hover:text-gray-900">
+                Privacy policy
+              </Link>
+              <span className="hidden sm:inline">|</span>
+              <Link href="/terms" className="hover:text-gray-900">
+                Terms and conditions
+              </Link>
+              <span className="hidden sm:inline">|</span>
+              <Link href="/disclaimer" className="hover:text-gray-900">
+                Disclaimer
+              </Link>
+              <span className="hidden sm:inline">|</span>
+              <Link href="/refund-policy" className="hover:text-gray-900">
+                Refund policy
+              </Link>
+            </div>
 
-          {/* Copyright and made with */}
-          <div className="text-sm text-gray-600">
-            Copyright©2025 All rights reserved | Made with ❤️ & ⚡ by
-            Futurebits.
+            {/* Copyright and made with */}
+            <div className="text-sm text-gray-600 text-center sm:text-right mt-2 sm:mt-0">
+              Copyright©2025 All rights reserved | Made with ❤️ & ⚡ by
+              Futurebits.
+            </div>
           </div>
         </div>
       </div>

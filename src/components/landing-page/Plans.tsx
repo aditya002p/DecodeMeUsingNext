@@ -69,9 +69,10 @@ const Plans = ({ className }) => {
           ))}
         </div>
       </div>
+      {/* Arrow decoration - large screens only */}
       <div
-        className="relative w-full pointer-events-none hidden lg:block"
-        style={{ top: "0px", paddingLeft: "6rem" }}
+        className="relative w-full pointer-events-none hidden lg:block lg:ml-20"
+        style={{ top: "0px", textAlign: "left" }}
       >
         <div style={{ position: "absolute" }}>
           <Image src={Arrow1} alt="Arrow" width={293} height={300} />

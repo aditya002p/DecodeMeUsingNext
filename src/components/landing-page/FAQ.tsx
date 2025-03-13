@@ -56,7 +56,7 @@ const FAQ: React.FC = () => {
     <div className="bg-[#fffcf4] py-16 md:py-40 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="relative flex justify-center mb-16">
-          <div className="absolute right-0 -top-36 ">
+          <div className="absolute right-0 -top-36 lg:block hidden">
             <Image
               src={cartton}
               alt="Rocket boy illustration"

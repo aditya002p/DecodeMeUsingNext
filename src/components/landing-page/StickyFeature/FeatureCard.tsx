@@ -50,7 +50,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ card, scale }) => {
     <div className="sticky top-0 sm:top-4 md:top-20 w-full pt-6 sm:pt-8 md:pt-10 ">
       <motion.div style={{ scale }} className="rounded-3xl mx-auto">
         <div
-          className="relative flex flex-col md:flex-row items-center sm:p-6 md:p-12 gap-6 md:gap-8 min-h-[500px] md:h-[600px] rounded-t-[32px] sm:rounded-t-[48px] md:rounded-t-[64px] w-full md:max-w-6xl mx-auto"
+          className="relative flex flex-col md:flex-row items-center sm:p-6 md:p-12 gap-6 md:gap-8 min-h-[500px] md:h-[600px] rounded-t-[32px] sm:rounded-t-[48px] md:rounded-t-[64px] w-full lg:max-w-6xl mx-auto"
           style={{
             backgroundColor: card.cardBackgroundColor,
           }}

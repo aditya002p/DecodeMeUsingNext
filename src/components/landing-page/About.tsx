@@ -8,7 +8,7 @@ import aboutAuthor from "../../../public/About.svg";
 import ArrowDown from "../../../public/Arrow2.png";
 
 // Reusable Card Component with custom SVG banners
-const JourneyCard = ({ title, items, itemStyle = "red", bannerSvg }) => {
+const JourneyCard = ({ items, itemStyle = "red", bannerSvg }) => {
   return (
     <div className="bg-white rounded-[32px] p-6 relative">
       {/* Custom SVG banner that will be different for each card */}
@@ -17,7 +17,7 @@ const JourneyCard = ({ title, items, itemStyle = "red", bannerSvg }) => {
       </div>
 
       <div className="mt-8 space-y-4">
-        {items.map((item, index) => (
+        {items.map((item: any, index: React.Key | null | undefined) => (
           <div key={index} className="flex items-start">
             <span
               className={`${

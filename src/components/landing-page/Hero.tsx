@@ -138,7 +138,7 @@ export default function Hero() {
             {currentItem.description}
           </p>
 
-          <Link href={currentItem.buttonLink}>
+          <Link href="/enquire">
             <Button variant="figma" size="lg" className="font-medium drop-shadow-lg">
             Explore Careers Today
                   <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
