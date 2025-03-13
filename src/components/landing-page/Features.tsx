@@ -227,14 +227,14 @@ const Features = () => {
         <div className="relative">
           {/* Timeline container - visible only on lg screens and up */}
           <div
-            className="absolute left-1/2 transform -translate-x-1/2 h-full hidden lg:block"
+            className="absolute left-1/2 transform -translate-x-1/2 h-[2850px] hidden lg:block"
             style={{ width: "8px" }}
           >
             {/* Main timeline line */}
             <div
               ref={timelineRef}
               className="h-full w-full bg-[#D9D9D9] transition-all duration-300 ease-in"
-              style={{ marginTop: "60px", marginBottom: "60px" }}
+              style={{ marginTop: "60px" }}
             ></div>
             {/* Checkpoint markers */}
             {featureItems.map((feature, index) => (
@@ -303,7 +303,7 @@ const Features = () => {
                     } max-w-md relative`}
                   >
                     {/* Number positioned at top of content */}
-                    <div className="text-7xl lg:text-8xl font-bold bg-custom-gradient bg-clip-text text-transparent mb-2 lg:absolute lg:-top-20 block mx-auto lg:mx-0">
+                    <div className="text-7xl lg:text-8xl font-bold bg-custom-gradient bg-clip-text text-transparent mb-6 lg:absolute lg:-top-32 block mx-auto lg:mx-0">
                       {feature.number}
                     </div>
 
@@ -323,18 +323,19 @@ const Features = () => {
                         >
                           {feature.buttonText}
                           <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
-                            <svg
-                              width="15"
-                              height="9"
-                              viewBox="0 0 15 9"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
-                                fill="#2A2A2A"
-                              />
-                            </svg>
-                          </div>
+              <svg
+                width="15"
+                height="9"
+                viewBox="0 0 15 9"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
+                  fill="#2A2A2A"
+                />
+              </svg>
+            </div>
                         </Button>
                       </Link>
                     </div>
@@ -354,18 +355,18 @@ const Features = () => {
                         : "lg:mr-0 lg:ml-auto"
                     } max-w-md relative`}
                   >
-                    {/* SVG Background Pattern - Enhanced visibility */}
+                    {/* SVG Background Pattern  */}
                     <div className="absolute inset-0 -z-10 transform scale-125">
                       <Image
                         src={backgroundSvg}
                         alt="Background pattern"
                         layout="fill"
                         objectFit="cover"
-                        className="opacity-50" // Increased from 30% to 50% for better visibility
+                        className="opacity-100"
                       />
                     </div>
 
-                    {/* Feature Image - Improved size and positioning */}
+                    {/* Feature Image */}
                     <div className="rounded-lg overflow-hidden transform transition-all duration-500 relative">
                       <Image
                         src={feature.image}
