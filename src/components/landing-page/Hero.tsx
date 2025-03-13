@@ -82,7 +82,7 @@ export default function Hero() {
   const currentItem = carouselData[currentSlide];
 
   return (
-    <div className="max-w-7xl rounded-[30px] mx-auto px-4 sm:px-6 relative pt-12 shadow-hero-shadow bg-background-hero h-full lg:max-h-screen">
+    <div className="max-w-6xl rounded-[30px] mx-auto px-4 sm:px-6 relative pt-12 shadow-hero-shadow bg-background-hero h-full lg:max-h-screen">
       <div className="flex flex-col lg:flex-row items-center gap-8 bg-border-image-source shadow-hero-shadow rounded-2xl overflow-hidden h-full lg:max-h-[724px] relative">
         {/* Content section - always first on small screens */}
         <div
@@ -169,7 +169,7 @@ export default function Hero() {
           }`}
         >
           {/* Ribbon - Only on large screens, with added right padding */}
-          <div className="hidden lg:block absolute top-0 left-0 z-10 translate-x-[-225%]">
+          <div className="hidden lg:block absolute top-0 left-0 z-10 translate-x-[-205%]">
             <div
               className="bg-ribbon text-white text-sm py-2 px-4 font-medium leading-6"
               style={{
