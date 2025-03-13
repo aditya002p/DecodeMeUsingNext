@@ -10,7 +10,7 @@ import jobVanish from "../../../public/job-vanish.svg";
 import commerceImg from "../../../public/commerce.svg";
 import backgroundSvg from "../../../public/FeaturesBg.svg";
 import Link from "next/link";
-
+import { useModal } from "@/app/context/ModalContext";
 interface FeatureItem {
   id: string;
   number: string;
@@ -104,7 +104,7 @@ const Features = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const indicatorRef = useRef<HTMLDivElement | null>(null);
   const checkpointsRef = useRef<Array<HTMLDivElement | null>>([]);
-
+  const { openEnquiryModal } = useModal();
   useEffect(() => {
     const handleScroll = () => {
       const isMobile = window.innerWidth < 1024; // Changed from 768 to 1024 for lg breakpoint
@@ -313,11 +313,11 @@ const Features = () => {
                       <p className="text-gray-600 mb-6 text-center lg:text-start lg:w-[400px] text-sm leading-6">
                         {feature.description}
                       </p>
-                      <Link href="/enquire">
                         <Button
                           variant="figma"
                           size="lg"
                           className="font-medium drop-shadow-lg"
+                          onClick={openEnquiryModal}
                         >
                           {feature.buttonText}
                           <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
@@ -335,7 +335,6 @@ const Features = () => {
                             </svg>
                           </div>
                         </Button>
-                      </Link>
                     </div>
                   </div>
                 </div>

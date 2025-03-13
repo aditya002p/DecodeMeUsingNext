@@ -7,7 +7,7 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 import aboutAuthor from "../../../public/About.svg";
 import ArrowDown from "../../../public/Arrow2.png";
 import Link from "next/link";
-
+import { useModal } from "@/app/context/ModalContext";
 // Reusable Card Component with custom SVG banners
 const JourneyCard = ({ items, itemStyle = "red", bannerSvg }) => {
   return (
@@ -38,7 +38,6 @@ const JourneyCard = ({ items, itemStyle = "red", bannerSvg }) => {
     </div>
   );
 };
-
 const About = () => {
   // SVG banners for each card
   const careerCrisisBanner = (
@@ -179,7 +178,7 @@ const About = () => {
       bannerSvg: solutionBanner,
     },
   ];
-
+  const { openEnquiryModal } = useModal();
   return (
     <div className="bg-[#FFFDF7] py-16 px-4">
       <div className="max-w-6xl mx-auto space-y-16">
@@ -288,12 +287,12 @@ const About = () => {
           </div>
 
           {/* Explore More Button */}
-          <Link href="/enquire">
           <div className="flex justify-center mt-12 relative">
             <Button
               variant="figma"
               size="lg"
               className="font-medium drop-shadow-lg"
+              onClick={openEnquiryModal}
             >
               Explore More Careers
               <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
@@ -312,7 +311,6 @@ const About = () => {
               </div>
             </Button>
           </div>
-          </Link>
         </div>
       </div>
       <div

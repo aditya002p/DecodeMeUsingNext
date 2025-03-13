@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
@@ -7,7 +8,7 @@ import notes from "../../../public/notes.png";
 import did from "../../../public/DidYouKnow.png";
 import ArrowDown from "../../../public/ArrowDown.png";
 import Link from "next/link";
-
+import { useModal } from "@/app/context/ModalContext";
 interface DidYouKnowProps {
   title?: string;
   content?: string;
@@ -16,7 +17,6 @@ interface DidYouKnowProps {
   className?: string;
   backgroundImage?: string;
 }
-
 const DidYouKnow: React.FC<DidYouKnowProps> = ({
   title = "Did You Know?",
   content = 'Career confusion is real! Studies show that most school students choose their careers without much deep thought. "So what?" you ask. Well, this leads to 80% of graduates concluding, "I hate my job! I shouldn\'t have pursued this degree."',
@@ -25,6 +25,7 @@ const DidYouKnow: React.FC<DidYouKnowProps> = ({
   className,
   backgroundImage = did,
 }) => {
+  const { openEnquiryModal } = useModal();
   return (
     <div className="relative w-full h-min md:max-w-[1200px] m-auto md:mt-40 lg:p-0 p-2">
       {/* Main container with rounded corners */}
@@ -51,11 +52,11 @@ const DidYouKnow: React.FC<DidYouKnowProps> = ({
             <p className="text-sm md:text-base mb-8 opacity-60 text-white leading-relaxed">
               {content}
             </p>
-            <Link href="/enquire">
               <Button
                 variant="figma"
                 size="lg"
                 className="font-medium drop-shadow-lg"
+                onClick={openEnquiryModal}
               >
                 Check Data Source
                 <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
@@ -73,7 +74,6 @@ const DidYouKnow: React.FC<DidYouKnowProps> = ({
                   </svg>
                 </div>
               </Button>
-            </Link>
           </div>
           <div className="md:w-1/2 flex justify-center md:justify-end"></div>
         </div>

@@ -1,9 +1,11 @@
+"use client"
 import React from "react";
 import cartoon from "../../../public/cartoon8.png";
 import Image from "next/image";
 import dots from "../../../public/Dots.svg";
 import Button from "./Button";
 import Link from "next/link";
+import { useModal } from "@/app/context/ModalContext";
 
 const ComparisonTable = () => {
   const comparisonData = [
@@ -87,7 +89,7 @@ const ComparisonTable = () => {
       </span>
     ));
   };
-
+  const { openEnquiryModal } = useModal();
   return (
     <div
       className="relative lg:mx-auto p-6 lg:p-10 text-white rounded-3xl mx-2 my-2 bg-[#FFFDF7]"
@@ -186,12 +188,12 @@ const ComparisonTable = () => {
         </div>
 
         {/* CTA Button */}
-        <Link href="/enquire">
           <div className="flex justify-center mt-6 lg:mt-10">
             <Button
               variant="figma"
               size="lg"
               className="font-medium drop-shadow-lg"
+              onClick={openEnquiryModal}
             >
               Explore Careers Today
               <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
@@ -210,7 +212,6 @@ const ComparisonTable = () => {
               </div>
             </Button>
           </div>
-        </Link>
       </div>
     </div>
   );

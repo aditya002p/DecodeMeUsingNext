@@ -6,7 +6,7 @@ import Image from "next/image";
 import cartton from "../../../public/cartoon3.png";
 import Button from "./Button";
 import Link from "next/link";
-
+import { useModal } from "@/app/context/ModalContext";
 interface FAQItem {
   title: string;
   content: string;
@@ -46,7 +46,7 @@ const FAQ: React.FC = () => {
   const handleToggle = (value: string) => {
     setOpenItem(openItem === value ? null : value);
   };
-
+  const { openEnquiryModal } = useModal();
   return (
     <div className="bg-[#fffcf4] py-16 md:py-40 px-0 sm:px-4">
       <div className="w-full max-w-4xl mx-auto">
@@ -96,9 +96,8 @@ const FAQ: React.FC = () => {
             </div>
           ))}
         </div>
-        <Link href="/enquire">
           <div className="mt-10 flex justify-center px-4 sm:px-0">
-            <Button variant="figma" size="lg" className="font-medium drop-shadow-lg">
+            <Button variant="figma" size="lg" className="font-medium drop-shadow-lg" onClick={openEnquiryModal}>
               Find Your Career Choice
               <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
                 <svg
@@ -116,7 +115,6 @@ const FAQ: React.FC = () => {
               </div>
             </Button>
           </div>
-        </Link>
       </div>
     </div>
   );
