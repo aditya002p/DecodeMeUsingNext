@@ -1,13 +1,11 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { cn } from "@/utils/utils";
 import Button from "./Button";
 import notes from "../../../public/notes.png";
 import did from "../../../public/DidYouKnow.png";
 import ArrowDown from "../../../public/ArrowDown.png";
-import Link from "next/link";
 import { useModal } from "@/app/context/ModalContext";
 interface DidYouKnowProps {
   title?: string;
@@ -20,14 +18,12 @@ interface DidYouKnowProps {
 const DidYouKnow: React.FC<DidYouKnowProps> = ({
   title = "Did You Know?",
   content = 'Career confusion is real! Studies show that most school students choose their careers without much deep thought. "So what?" you ask. Well, this leads to 80% of graduates concluding, "I hate my job! I shouldn\'t have pursued this degree."',
-  buttonText = "Check Data Source",
-  buttonUrl = "#",
   className,
   backgroundImage = did,
 }) => {
   const { openEnquiryModal } = useModal();
   return (
-    <div className="relative w-full h-min md:max-w-[1200px] m-auto md:mt-40 lg:p-0 p-2">
+    <div className="relative w-full h-min md:max-w-[1200px] m-auto md:mt-40 lg:p-0 p-4">
       {/* Main container with rounded corners */}
       <div
         className={cn("relative w-full rounded-3xl overflow-hidden", className)}

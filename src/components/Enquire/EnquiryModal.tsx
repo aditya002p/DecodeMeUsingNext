@@ -6,10 +6,10 @@ import logo from "../../../public/logo.svg";
 import { Button } from "../landing-page/Button";
 
 interface FormData {
-  studentName: string;
-  contactNumber: string;
-  studentGrade: string;
-  query: string;
+  Name: string;
+  Contact_Number: string;
+  Student_Grade: string;
+  Student_Message: string;
 }
 
 interface EnquiryModalProps {
@@ -19,10 +19,10 @@ interface EnquiryModalProps {
 
 const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState<FormData>({
-    studentName: "",
-    contactNumber: "",
-    studentGrade: "",
-    query: "",
+    Name: "",
+    Contact_Number: "",
+    Student_Grade: "",
+    Student_Message: "",
   });
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -56,7 +56,7 @@ const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
 
       if (response.ok) {
         setSuccessMessage("Your enquiry has been submitted successfully!");
-        setFormData({ studentName: "", contactNumber: "", studentGrade: "", query: "" });
+        setFormData({ Name: "", Contact_Number: "", Student_Grade: "", Student_Message: "" });
         // Close modal after successful submission after 2 seconds
         setTimeout(() => {
           onClose();
@@ -95,7 +95,7 @@ const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
 
           {/* Heading */}
           <div className="text-center mb-3 sm:mb-5">
-            <h1 className="text-lg sm:text-2xl font-bold text-gray-800">Let's Build Your Career</h1>
+            <h1 className="text-lg sm:text-2xl font-bold text-gray-800">Let `&apos`s Build Your Career</h1>
             <h1 className="text-lg sm:text-2xl font-bold text-gray-800">Roadmap Together!</h1>
           </div>
 
@@ -111,15 +111,15 @@ const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
           <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-4">
             {/* Student Name */}
             <div>
-              <label htmlFor="studentName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="Name" className="block text-sm font-medium text-gray-700 mb-1">
                 Student Name
               </label>
               <input
-                id="studentName"
-                name="studentName"
+                id="Name"
+                name="Name"
                 type="text"
                 placeholder="Vihaan Nikam"
-                value={formData.studentName}
+                value={formData.Name}
                 onChange={handleChange}
                 className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
                 required
@@ -128,15 +128,15 @@ const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
 
             {/* Contact Number */}
             <div>
-              <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="Contact_Number" className="block text-sm font-medium text-gray-700 mb-1">
                 Contact Number
               </label>
               <input
-                id="contactNumber"
-                name="contactNumber"
+                id="Contact_Number"
+                name="Contact_Number"
                 type="tel"
                 placeholder="8879871562"
-                value={formData.contactNumber}
+                value={formData.Contact_Number}
                 onChange={handleChange}
                 className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
                 required
@@ -145,15 +145,15 @@ const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
 
             {/* Student Grade */}
             <div>
-              <label htmlFor="studentGrade" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="Student_Grade" className="block text-sm font-medium text-gray-700 mb-1">
                 Student Grade
               </label>
               <input
-                id="studentGrade"
-                name="studentGrade"
+                id="Student_Grade"
+                name="Student_Grade"
                 type="text"
                 placeholder="9th"
-                value={formData.studentGrade}
+                value={formData.Student_Grade}
                 onChange={handleChange}
                 className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
                 required
@@ -162,15 +162,15 @@ const EnquiryModal: React.FC<EnquiryModalProps> = ({ isOpen, onClose }) => {
 
             {/* Query */}
             <div>
-              <label htmlFor="query" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="Student_Message" className="block text-sm font-medium text-gray-700 mb-1">
                 How can we help you?
               </label>
               <textarea
-                id="query"
-                name="query"
+                id="Student_Message"
+                name="Student_Message"
                 rows={2}
                 placeholder="Tell us about your career interests or queries"
-                value={formData.query}
+                value={formData.Student_Message}
                 onChange={handleChange}
                 className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:ring-yellow-400 focus:border-yellow-400"
                 required

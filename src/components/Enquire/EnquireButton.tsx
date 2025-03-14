@@ -14,8 +14,8 @@ interface EnquireButtonProps {
 
 const EnquireButton: React.FC<EnquireButtonProps> = ({
   text = "Explore Careers Today",
-  variant = "figma",
-  size = "lg",
+  // variant = "figma",
+  // size = "lg",
   className = "font-medium drop-shadow-lg",
   showArrow = true,
 }) => {

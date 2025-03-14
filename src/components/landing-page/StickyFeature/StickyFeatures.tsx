@@ -1,39 +1,18 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { useScroll } from "framer-motion";
 import FeatureCard from "./FeatureCard";
 import { cardsData } from "./CardsData";
 
 export default function StickyFeatures() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scrollHeight, setScrollHeight] = useState(0);
   const [visibleCardIndex, setVisibleCardIndex] = useState(0);
-
-  const { scrollY } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  useEffect(() => {
-    const updateScrollHeight = () => {
-      if (containerRef.current) {
-        setScrollHeight(containerRef.current.scrollHeight);
-      }
-    };
-
-    updateScrollHeight();
-    window.addEventListener("resize", updateScrollHeight);
-
-    return () => window.removeEventListener("resize", updateScrollHeight);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       if (!containerRef.current) return;
 
       const containerHeight = containerRef.current.scrollHeight;
-      const viewportHeight = window.innerHeight;
       const scrollPosition = window.scrollY - containerRef.current.offsetTop;
 
       // Calculate the section height for each card

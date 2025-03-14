@@ -9,8 +9,8 @@ import wrongCareer from "../../../public/wrong-career.svg";
 import jobVanish from "../../../public/job-vanish.svg";
 import commerceImg from "../../../public/commerce.svg";
 import backgroundSvg from "../../../public/FeaturesBg.svg";
-import Link from "next/link";
 import { useModal } from "@/app/context/ModalContext";
+
 interface FeatureItem {
   id: string;
   number: string;
@@ -96,15 +96,14 @@ const Features = () => {
   const [activeFeatures, setActiveFeatures] = useState<{
     [key: string]: boolean;
   }>({});
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [isTimelineActive, setIsTimelineActive] = useState(false);
 
   const featureRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
-  const indicatorRef = useRef<HTMLDivElement | null>(null);
   const checkpointsRef = useRef<Array<HTMLDivElement | null>>([]);
   const { openEnquiryModal } = useModal();
+
   useEffect(() => {
     const handleScroll = () => {
       const isMobile = window.innerWidth < 1024; // Changed from 768 to 1024 for lg breakpoint
@@ -151,8 +150,6 @@ const Features = () => {
           ),
           1
         );
-
-        setScrollPosition(visiblePercentage);
 
         // Apply the gradient based on scroll position
         timelineElement.style.background = `linear-gradient(to bottom, #442D00 ${
@@ -240,7 +237,9 @@ const Features = () => {
             {featureItems.map((feature, index) => (
               <div
                 key={`checkpoint-${feature.id}`}
-                ref={(el) => (checkpointsRef.current[index] = el)}
+                ref={(el) => {
+                  if (el) checkpointsRef.current[index] = el;
+                }}
                 className="absolute w-8 h-8 rounded-sm border transform -translate-x-1/2 left-1/2 flex items-center justify-center transition-all duration-300 ease-in-out z-10"
                 style={{
                   top: `${(index / (featureItems.length - 1)) * 100}%`,
@@ -275,10 +274,12 @@ const Features = () => {
 
           {/* Features */}
           <div className="space-y-32 lg:space-y-64">
-            {featureItems.map((feature, index) => (
+            {featureItems.map((feature) => (
               <div
                 key={feature.id}
-                ref={(el) => (featureRefs.current[feature.id] = el)}
+                ref={(el) => {
+                  if (el) featureRefs.current[feature.id] = el;
+                }}
                 className={`relative flex flex-col items-center text-center ${
                   feature.position === "left"
                     ? "lg:flex-row lg:text-left"
@@ -313,75 +314,75 @@ const Features = () => {
                       <p className="text-gray-600 mb-6 text-center lg:text-start lg:w-[400px] text-sm leading-6">
                         {feature.description}
                       </p>
-                        <Button
-                          variant="figma"
-                          size="lg"
-                          className="font-medium drop-shadow-lg"
-                          onClick={openEnquiryModal}
-                        >
-                          {feature.buttonText}
-                          <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
-                            <svg
-                              width="15"
-                              height="9"
-                              viewBox="0 0 15 9"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
-                                fill="#2A2A2A"
-                              />
-                            </svg>
-                          </div>
-                        </Button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Image section with SVG background */}
-                <div
-                  className={`w-full lg:w-1/2 ${
-                    feature.position === "left" ? "lg:pl-16" : "lg:pr-16"
-                  } flex justify-center lg:justify-start`}
-                >
-                  <div
-                    className={`${
-                      feature.position === "left"
-                        ? "lg:ml-0 lg:mr-auto"
-                        : "lg:mr-0 lg:ml-auto"
-                    } max-w-md relative`}
-                  >
-                    {/* SVG Background Pattern  */}
-                    <div className="absolute inset-0 -z-10 transform lg:scale-125">
-                      <Image
-                        src={backgroundSvg}
-                        alt="Background pattern"
-                        layout="fill"
-                        objectFit="cover"
-                        className="opacity-100"
-                      />
-                    </div>
-
-                    {/* Feature Image */}
-                    <div className="rounded-lg overflow-hidden transform transition-all duration-500 relative">
-                      <Image
-                        src={feature.image}
-                        alt={feature.imageAlt}
-                        width={400}
-                        height={400}
-                        className="rounded-lg z-10 relative"
-                      />
-                    </div>
+                      <Button
+                        variant="figma"
+                        size="lg"
+                        className="font-medium drop-shadow-lg"
+                        onClick={openEnquiryModal}
+                      >
+                        {feature.buttonText}
+                        <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
+                          <svg
+                            width="15"
+                            height="9"
+                            viewBox="0 0 15 9"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                            d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
+                            fill="#2A2A2A"
+                          />
+                        </svg>
+                      </div>
+                    </Button>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+
+              {/* Image section with SVG background */}
+              <div
+                className={`w-full lg:w-1/2 ${
+                  feature.position === "left" ? "lg:pl-16" : "lg:pr-16"
+                } flex justify-center lg:justify-start`}
+              >
+                <div
+                  className={`${
+                    feature.position === "left"
+                      ? "lg:ml-0 lg:mr-auto"
+                      : "lg:mr-0 lg:ml-auto"
+                  } max-w-md relative`}
+                >
+                  {/* SVG Background Pattern  */}
+                  <div className="absolute inset-0 -z-10 transform lg:scale-125">
+                    <Image
+                      src={backgroundSvg}
+                      alt="Background pattern"
+                      layout="fill"
+                      objectFit="cover"
+                      className="opacity-100"
+                    />
+                  </div>
+
+                  {/* Feature Image */}
+                  <div className="rounded-lg overflow-hidden transform transition-all duration-500 relative">
+                    <Image
+                      src={feature.image}
+                      alt={feature.imageAlt}
+                      width={400}
+                      height={400}
+                      className="rounded-lg z-10 relative"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 };
 
 export default Features;

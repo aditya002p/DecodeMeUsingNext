@@ -1,15 +1,26 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { cn } from "@/utils/utils";
 import Button from "./Button";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 import aboutAuthor from "../../../public/About.svg";
 import ArrowDown from "../../../public/Arrow2.png";
-import Link from "next/link";
 import { useModal } from "@/app/context/ModalContext";
+
+// Define types for the card items and props
+type JourneyCardItem = string;
+
+interface JourneyCardProps {
+  items: JourneyCardItem[];
+  itemStyle?: "red" | "gold";
+  bannerSvg: React.ReactNode;
+}
+
 // Reusable Card Component with custom SVG banners
-const JourneyCard = ({ items, itemStyle = "red", bannerSvg }) => {
+const JourneyCard: React.FC<JourneyCardProps> = ({ 
+  items, 
+  itemStyle = "red", 
+  bannerSvg 
+}) => {
   return (
     <div className="bg-white rounded-[32px] p-6 relative">
       {/* Custom SVG banner that will be different for each card */}
@@ -18,7 +29,7 @@ const JourneyCard = ({ items, itemStyle = "red", bannerSvg }) => {
       </div>
 
       <div className="mt-8 space-y-4">
-        {items.map((item: any, index: React.Key | null | undefined) => (
+        {items.map((item: string, index: number) => (
           <div key={index} className="flex items-start">
             <span
               className={`${
@@ -38,7 +49,16 @@ const JourneyCard = ({ items, itemStyle = "red", bannerSvg }) => {
     </div>
   );
 };
-const About = () => {
+
+// Define type for the card data
+interface CardData {
+  title: string;
+  items: string[];
+  itemStyle: "red" | "gold";
+  bannerSvg: React.ReactNode;
+}
+
+const About: React.FC = () => {
   // SVG banners for each card
   const careerCrisisBanner = (
     <svg
@@ -146,7 +166,7 @@ const About = () => {
   );
 
   // Card content data
-  const cardsData = [
+  const cardsData: CardData[] = [
     {
       title: "CAREER CRISIS",
       items: [
@@ -270,7 +290,7 @@ const About = () => {
           </h2>
           <p className="text-center text-gray-700 mb-12">
             🚀 Imagine if every young graduate explored careers in
-            school—India's economy would be unstoppable!
+            school—India&apos;s economy would be unstoppable!
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[360px] drop-shadow-2xl">
@@ -278,7 +298,6 @@ const About = () => {
             {cardsData.map((card, index) => (
               <JourneyCard
                 key={index}
-                title={card.title}
                 items={card.items}
                 itemStyle={card.itemStyle}
                 bannerSvg={card.bannerSvg}
@@ -297,32 +316,32 @@ const About = () => {
               Explore More Careers
               <div className="ml-3 bg-white rounded-lg w-5 h-4 py-[3px] px-[3.19px]">
                 <svg
-                  width="15"
-                  height="9"
-                  viewBox="0 0 15 9"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                > 
-                  <path
-                    d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
-                    fill="#2A2A2A"
-                  />
-                </svg>
-              </div>
-            </Button>
-          </div>
-        </div>
-      </div>
-      <div
-        className="relative w-full pointer-events-none hidden lg:block"
-        style={{ top: "-90px", paddingLeft: "52rem" }}
-      >
-        <div style={{ position: "relative" }}>
-          <Image src={ArrowDown} alt="Arrow" width={400} height={400} />
-        </div>
-      </div>
-    </div>
-  );
+                 width="15"
+                 height="9"
+                 viewBox="0 0 15 9"
+                 fill="none"
+                 xmlns="http://www.w3.org/2000/svg"
+               > 
+                 <path
+                   d="M11.4915 4.37827L8.99655 1.87741C8.95639 1.83938 8.90604 1.81384 8.85164 1.80392C8.79723 1.79399 8.74111 1.80011 8.69011 1.82151C8.63912 1.84292 8.59545 1.87869 8.56442 1.92448C8.5334 1.97026 8.51636 2.02408 8.51538 2.07938V4.12878H3.67404C3.55588 4.12878 3.44256 4.17572 3.35901 4.25927C3.27545 4.34282 3.22852 4.45614 3.22852 4.5743C3.22852 4.69246 3.27545 4.80578 3.35901 4.88933C3.44256 4.97289 3.55588 5.01982 3.67404 5.01982H8.51538V7.06923C8.51636 7.12452 8.5334 7.17834 8.56442 7.22413C8.59545 7.26991 8.63912 7.30569 8.69011 7.32709C8.74111 7.3485 8.79723 7.35461 8.85164 7.34469C8.90604 7.33476 8.95639 7.30923 8.99655 7.2712L11.4915 4.77033C11.5185 4.74531 11.54 4.71498 11.5547 4.68125C11.5694 4.64752 11.577 4.61111 11.577 4.5743C11.577 4.5375 11.5694 4.50109 11.5547 4.46735C11.54 4.43362 11.5185 4.4033 11.4915 4.37827Z"
+                   fill="#2A2A2A"
+                 />
+               </svg>
+             </div>
+           </Button>
+         </div>
+       </div>
+     </div>
+     <div
+       className="relative w-full pointer-events-none hidden lg:block"
+       style={{ top: "-90px", paddingLeft: "52rem" }}
+     >
+       <div style={{ position: "relative" }}>
+         <Image src={ArrowDown} alt="Arrow" width={400} height={400} />
+       </div>
+     </div>
+   </div>
+ );
 };
 
 export default About;

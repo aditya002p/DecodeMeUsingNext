@@ -4,11 +4,23 @@ import cartoon from "../../../public/cartoon8.png";
 import Image from "next/image";
 import dots from "../../../public/Dots.svg";
 import Button from "./Button";
-import Link from "next/link";
 import { useModal } from "@/app/context/ModalContext";
 
+// Define type for the content items
+interface ContentItem {
+  text: string;
+  isBold: boolean;
+}
+
+// Define type for comparison data
+interface ComparisonItem {
+  factor: string;
+  decodingApproach: ContentItem[];
+  otherCounselors: string;
+}
+
 const ComparisonTable = () => {
-  const comparisonData = [
+  const comparisonData: ComparisonItem[] = [
     {
       factor: "Who's This For?",
       decodingApproach: [
@@ -82,14 +94,16 @@ const ComparisonTable = () => {
     },
   ];
 
-  const renderDecodingApproach = (items: any[]) => {
-    return items.map((item: { isBold: any; text: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, idx: React.Key | null | undefined) => (
+  const renderDecodingApproach = (items: ContentItem[]) => {
+    return items.map((item, idx) => (
       <span key={idx} className={item.isBold ? "font-medium" : ""}>
         {item.text}
       </span>
     ));
   };
+  
   const { openEnquiryModal } = useModal();
+  
   return (
     <div
       className="relative lg:mx-auto p-6 lg:p-10 text-white rounded-3xl mx-2 my-2 bg-[#FFFDF7]"
@@ -130,10 +144,10 @@ const ComparisonTable = () => {
         {/* Heading */}
         <div className="text-center mb-6 lg:mb-10">
           <h2 className="text-2xl md:text-4xl font-bold mb-2">
-            Why We're Different (And Better!)
+            Why We are Different (And Better!)
           </h2>
           <p className="text-sm md:text-base opacity-50 font-normal">
-            We don't just hand you a list of careers—we help you experience
+            We don`&apos`t just hand you a list of careers—we help you experience
             them!
           </p>
         </div>

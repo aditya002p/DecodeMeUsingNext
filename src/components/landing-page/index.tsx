@@ -19,7 +19,7 @@ export default function LandingPage() {
       <Features />
       <DidYouKnow />
       <StickyFeatures />
-      <Plans />
+      <Plans className={undefined} />
       <About />
       <ComparisonTable />
       <Outcome />

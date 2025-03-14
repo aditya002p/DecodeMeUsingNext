@@ -61,7 +61,7 @@ export default function Hero() {
           }, 500);
         }, 500);
       }
-    }, 7000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [animating]);
@@ -82,12 +82,12 @@ export default function Hero() {
   const currentItem = carouselData[currentSlide];
 
   return (
-    <div className="max-w-6xl rounded-[30px] mx-auto px-4 sm:px-6 relative pt-12 shadow-hero-shadow bg-background-hero h-full lg:max-h-screen">
-      <div className="flex flex-col lg:flex-row items-center gap-8 bg-border-image-source shadow-hero-shadow rounded-2xl overflow-hidden h-full lg:max-h-[724px] relative">
+    <div className="max-w-6xl rounded-r-[30px] mx-auto px-4 sm:px-6 relative pt-12 shadow-hero-shadow bg-background-hero h-full lg:max-h-screen">
+      <div className="flex flex-col lg:flex-row items-center gap-8 bg-border-image-source shadow-hero-shadow rounded-r-[30px] overflow-hidden h-full lg:max-h-[724px] relative">
         {/* Content section - always first on small screens */}
         <div
           className={`w-full h-full lg:w-1/2 px-6 sm:px-8 lg:px-12 pt-8 lg:pt-16 pb-8 order-1 lg:order-1 relative transition-opacity duration-500 ${
-            animating ? "opacity-0" : "opacity-100"
+            animating ? "opacity-20" : "opacity-100"
           }`}
         >
           {/* Ribbon - Updated with right padding */}
@@ -165,7 +165,7 @@ export default function Hero() {
         {/* Image section - always second on small screens */}
         <div
           className={`w-full lg:w-1/2 order-2 lg:order-2 relative transition-opacity duration-500 ${
-            animating ? "opacity-0" : "opacity-100"
+            animating ? "opacity-50" : "opacity-100"
           }`}
         >
           {/* Ribbon - Only on large screens, with added right padding */}

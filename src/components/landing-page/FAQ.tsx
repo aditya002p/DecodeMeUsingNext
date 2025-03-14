@@ -5,7 +5,6 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Image from "next/image";
 import cartton from "../../../public/cartoon3.png";
 import Button from "./Button";
-import Link from "next/link";
 import { useModal } from "@/app/context/ModalContext";
 interface FAQItem {
   title: string;
