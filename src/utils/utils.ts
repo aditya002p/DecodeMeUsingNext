@@ -1,43 +1,17 @@
-import { Toaster } from "@/components/ui/sonner";
-// import config from '@/config';
-// import { TypePaymentGatwayProvider } from "@/types/types";
+import { toast } from "sonner"; // ✅ Ensure correct import
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 // Function: cn (Class Name)
-// This utility function combines and deduplicates class names using clsx and twMerge.
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Function: cn (Class Name)
-// This utility function combines and deduplicates class names using clsx and twMerge.
+// Function: errorToast (Displays an error message)
 export const errorToast = (description: string, title?: string) =>
-  Toaster({ title, description, variant: "destructive" });
-
-// Constructs a URL for initiating a payment process based on the provider, variant ID, user email, and an optional discount code.
-// Parameters:
-// - provider: Type of payment gateway (e.g., 'stripe', 'lemonSqueezy') as defined in TypePaymentGatwayProvider.
-// - variantId: ID of the product or service variant to be purchased.
-// - email: Customer's email to whom the payment link will be sent.
-// - discountCode (optional): A discount code that can be applied to the payment.
-// This function reads the base URL and parameter names from the configuration, constructs the payment URL, and appends the discount code if provided.
-// export function getPaymentUrl(
-//   provider: TypePaymentGatwayProvider,
-//   variantId: string,
-//   email: string,
-//   discountCode?: string
-// ): string {
-// const platform = config[provider];
-// const baseUrl = platform.baseUrl;
-
-//   let paymentUrl = `${baseUrl}/${variantId}?${platform.emailParam}=${email}`;
-
-//   if (discountCode) {
-//     paymentUrl += `&${platform.discountParam}=${discountCode}`;
-//   }
-//   return paymentUrl;
-// }
+  toast.error(title || "Error", {
+    description,
+  });
 
 // Helper function: image download
 function forceDownload(blobUrl: string, filename: string) {
@@ -48,7 +22,8 @@ function forceDownload(blobUrl: string, filename: string) {
   a.click();
   a.remove();
 }
-// QR Code download function. It takes the URL of the QR code image and the filename as arguments.
+
+// QR Code download function
 export function downloadQrCode(url: string, filename: string) {
   fetch(url, {
     headers: new Headers({

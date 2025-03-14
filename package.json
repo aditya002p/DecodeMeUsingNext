@@ -16,6 +16,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "codemod": "^0.18.3",
+    "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.5.2",
     "framer-motion": "^11.3.24",
     "googleapis": "^146.0.0",

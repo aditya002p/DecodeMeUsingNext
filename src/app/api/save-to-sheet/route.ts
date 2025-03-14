@@ -1,5 +1,7 @@
-// import { google } from 'googleapis';
-// import path from 'path';
+import { google } from 'googleapis';
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+dotenv.config(); 
 
 // Type definition for the request body
 interface FormData {
@@ -9,14 +11,30 @@ interface FormData {
   Student_Message: string;
 }
 
-// This is the POST handler for the API route
-export async function POST(req: Request) {
-  try {
-    // Log incoming request body
-    const requestBody = await req.json();
-    console.log('Received Request:', requestBody);
+// Google Sheets Authentication
+const serviceAccountInfo = {
+  type: process.env.TYPE,
+  project_id: process.env.PROJECT_ID,
+  private_key_id: process.env.PRIVATE_KEY_ID,
+  private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
+  client_email: process.env.CLIENT_EMAIL,
+  client_id: process.env.CLIENT_ID,
+  auth_uri: process.env.AUTH_URI,
+  token_uri: process.env.TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.AUTH_PROVIDER_CERT_URL,
+  client_x509_cert_url: process.env.CLIENT_CERT_URL,
+  universe_domain: process.env.UNIVERSE_DOMAIN,
+};
 
-    const { Name, Contact_Number, Student_Grade, Student_Message }: FormData = requestBody;
+const auth = new google.auth.GoogleAuth({
+  credentials: serviceAccountInfo,
+  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+});
+const sheets = google.sheets({ version: 'v4', auth });
+
+export async function POST(req: Request): Promise<Response> {
+  try {
+    const { Name, Contact_Number, Student_Grade, Student_Message }: FormData = await req.json();
 
     if (!Name || !Contact_Number || !Student_Grade || !Student_Message) {
       console.error('Missing fields in the request:', { Name, Contact_Number, Student_Grade, Student_Message });
@@ -24,47 +42,53 @@ export async function POST(req: Request) {
     }
 
     // Google Sheets Integration
-    // try {
-    //   console.log('Initializing Google Sheets API...');
+    try {
+      const spreadsheetId = process.env.SPREADSHEET_ID;
+      const range = 'Sheet1!A:D';
 
-      // const keyFilePath = path.join(process.cwd(), 'google-service-account.json');
-      // const auth = new google.auth.GoogleAuth({
-      //   keyFile: keyFilePath,
-      //   scopes: 'https://www.googleapis.com/auth/spreadsheets',
-      // });
+      await sheets.spreadsheets.values.append({
+        spreadsheetId,
+        range,
+        valueInputOption: 'RAW',
+        insertDataOption: 'INSERT_ROWS',
+        requestBody: {
+          values: [[Name, Contact_Number, Student_Grade, Student_Message]],
+        },
+      });
+      console.log('Data saved to Google Sheets successfully.');
+    } catch (error) {
+      console.error('Error saving to Google Sheets:', error);
+      return new Response(JSON.stringify({ error: 'Failed to save data to Google Sheets' }), { status: 500 });
+    }
 
-    //   const sheets = google.sheets({ version: 'v4', auth });
-    //   const spreadsheetId = '1P1QWBHHBiICJgX3L9vAP7gFhaAfo5_K0gkrAccKIvYk';
-    //   const range = 'Sheet1!A:D';
+    // Email Notification Integration
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
 
-    //   console.log('Attempting to append data to Google Sheets...');
-    //   const response = await sheets.spreadsheets.values.get({
-    //     spreadsheetId,
-    //     range,
-    //   });
-    //   console.log(response);
-    // //   const response = await sheets.spreadsheets.values.append({
-    // //     spreadsheetId,
-    // //     range,
-    // //     valueInputOption: 'RAW',
-    // //     insertDataOption: 'INSERT_ROWS',
-    // //     requestBody: {
-    // //       values: [[Name, Contact_Number, Student_Grade, Student_Message]],
-    // //     },
-    // //   });
+      const recipients: string[] = ['adityapathak902@gmail.com'];
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: recipients.join(', '),
+        subject: 'New Form Submission',
+        text: `A new response was submitted:\n\nStudent Name: ${Name}\nContact Number: ${Contact_Number}\nStudent Grade: ${Student_Grade}\nQuery: ${Student_Message}`,
+      };
 
-    // //   console.log('Google Sheets API Response:', response.data);
-    // //   return new Response(JSON.stringify({ message: 'Data saved successfully', response: response.data }), { status: 200 });
-    // } catch (error) {
-    //   console.error('Error saving to Google Sheets:', error);
-    //   return new Response(JSON.stringify({ error: 'Failed to save data to Google Sheets', details: error }), { status: 500 });
-    // }
-    return new Response(JSON.stringify({ message: 'OK' }), { status: 200 });
+      const info = await transporter.sendMail(mailOptions);
+      console.log('Email sent successfully:', info);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      return new Response(JSON.stringify({ error: 'Failed to send email' }), { status: 500 });
+    }
+
+    return new Response(JSON.stringify({ message: 'Data saved and email sent successfully' }), { status: 200 });
   } catch (error) {
     console.error('General error:', error);
-    return new Response(JSON.stringify({ error: 'Failed to process request', details: error }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Failed to process request' }), { status: 500 });
   }
 }
-
-
-// give the google-serice-account.json as fields not as a file
